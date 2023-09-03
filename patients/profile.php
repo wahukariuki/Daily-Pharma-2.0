@@ -1,12 +1,5 @@
 <?php 
-
-session_start();
-require_once("connect.php");
-
-$username = $_SESSION["userid"];
-$user = $_SESSION["user"];
-$ID = $_SESSION["user"]["Patient_SSN"];
-
+include "../inc/session_header.php";
 
 //read the row of the selected client from the database table 
 $sql = $conn->prepare("SELECT * FROM patients WHERE `Patient_SSN` = ?");
