@@ -1,11 +1,6 @@
 <?php 
-session_start();
-require_once("connect.php");
+include "../inc/session_header.php";
 
-
-$ID = $_SESSION["userid"];
-$user = $_SESSION["user"];
-$username = $_SESSION["user"]["Pharmacy_Name"];
 
 if (isset($_GET["id"])) {
 
