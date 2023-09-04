@@ -1,11 +1,5 @@
 <?php 
-session_start();
-require_once("connect.php");
-
-
-$ID = $_SESSION["userid"];
-$user = $_SESSION["user"];
-$username = $_SESSION["user"]["Company_Name"];
+include "../inc/session_header.php";
 
 if (isset($_GET["id"])) {
 

@@ -1,19 +1,5 @@
 <?php
-//establish a php session
-session_start();
-
-// Check if the user is logged in
-if (!isset($_SESSION["userid"]) || !isset($_SESSION["user"])) {
-    // Redirect to the login page if the user is not logged in
-    header("Location: ../login.html");
-    exit;
-}
-
-// Get the user information from the session variables
-$username = $_SESSION["userid"];
-$user = $_SESSION["user"];
-$ID = $_SESSION["user"]["Company_ID"];
-
+include "../inc/session_header.php";
 ?>
 
 <!DOCTYPE html>
