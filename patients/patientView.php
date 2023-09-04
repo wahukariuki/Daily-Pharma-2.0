@@ -262,9 +262,9 @@ $drugInformation[] = $row;
     </section>
 
 
-    <script src="../script.js"></script>
-    <script src="../script1.js"></script>
-    <script src="../script4.js"></script>
+    <script src="../overlay_script.js"></script>
+    <script src="../image_slider.js"></script>
+    <script src="../category_selector.js"></script>
     
     <script>
         const selectElement = document.getElementById("availableDrugs");
