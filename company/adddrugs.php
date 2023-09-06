@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     do {
+
         $sql = "
         INSERT INTO `drugs`(`Drug_Name`, `Drug_Description`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`)
          VALUES('$drug_name', '$drug_desc', '$drug_quantity', '$drug_expiry',  '$drug_manuf', '$drug_company')";
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ";
         }
         ?>
-        <form method="post">
+        <form method="post" action="adddrugs.php">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Drug Name</label>
                 <div class="col-sm-6">
@@ -123,9 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="offset-sm-3 col-sm-3 d-grid">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="/users/companytable.php" role="button">Cancel</a>
-                </div>
+
             </div>
         </form>
     </div>
