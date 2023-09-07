@@ -276,6 +276,9 @@ include "../inc/view_header.php";
                             <td>$row[Company_Email]</td>
                             <td>$row[Company_Phone]</td>
                             <td>$row[Status]</td>
+                            <td>
+                            <a class='btn btn-danger btn-sm' href='companyedit.php?id=" . $row["Company_ID"] ."'>Edit</a>
+                            </td>
                         </tr>
                         ";
                     }
