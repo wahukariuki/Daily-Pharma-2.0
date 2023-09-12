@@ -1273,3 +1273,61 @@ border: 2px solid black;
 }
 
 
+/* /*New CSS */
+
+.select-container.company{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+button.btn.btn-primary.company, button.btn.btn-danger.company{
+    min-width: 120px;
+    height: 60px;
+    padding: 10px;
+    margin-right: 20px;
+    border: none;
+}
+
+
+
+
+ul.items {margin: 50px 10px -17px 0; padding: 0; width: 997px;}
+ul.items li {
+    display: inline-block;
+    list-style: none;
+    width: 204px;
+    text-align: center;
+    padding: 14px;
+    margin: 0 0 17px 17px;
+    position: relative;
+    left: -17px;
+}
+
+ul.items li a {
+    background: #f3f3f3;
+    display: inline-block;
+    padding: 30px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+/* .details-button {
+  color: #888;
+} */
+ul.items li a:hover {
+    opacity: 1;
+    color: #019587;
+}
+ul.items li img {
+    width: 190px;
+    border: 6px solid #f0eeed;
+}
+ul.items li p {
+    margin-left: 0;
+    margin-right: 0;
+    width: auto;
+    font-size: 16px;
+}
