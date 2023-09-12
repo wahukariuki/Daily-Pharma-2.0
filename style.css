@@ -14,7 +14,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content:center;
-    align-categorized-drugs: center;
+    align-items: center;
 }
 
 */
@@ -37,7 +37,7 @@ header{
     background: transparent;
     display: flex;
     justify-content: space-between;
-    align-categorized-drugs: center;
+    align-items: center;
     backdrop-filter: blur(20px); 
     z-index: 3;
 }
@@ -113,7 +113,7 @@ nav a:not(:last-child):hover::after{
 #menu{
     display: flex;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
     flex-direction: column;
     height: 100vh;
     width: 0;
@@ -203,7 +203,7 @@ nav a:not(:last-child):hover::after{
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
     flex-direction: column;
     height: 700px;
 }
@@ -219,7 +219,7 @@ nav a:not(:last-child):hover::after{
 .headline{
     display: flex;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
     flex-direction: column;
 }
 .headline p:not(.span){
@@ -346,7 +346,7 @@ nav a:not(:last-child):hover::after{
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    align-categorized-drugs: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -386,7 +386,7 @@ nav a:not(:last-child):hover::after{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
 }
 
 .features-icon img{
@@ -416,7 +416,7 @@ nav a:not(:last-child):hover::after{
 @media screen and (max-width:580px) {
     .feature-box{
         width: 95%;
-        align-categorized-drugs:flex-start;
+        align-items:flex-start;
         text-align: start;
     }
 
@@ -567,7 +567,7 @@ hr{
     margin: auto;
     display: flex;
     justify-content: space-between;
-    align-categorized-drugs: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 
@@ -592,7 +592,7 @@ hr{
 
 .user{
     display: flex;
-    align-categorized-drugs: center;
+    align-items: center;
     margin: 20px 0;
 }
 
@@ -638,7 +638,7 @@ hr{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-categorized-drugs: flex-start;
+    align-items: flex-start;
 }
 
 .footer-left, .footer-right{
@@ -711,7 +711,7 @@ hr{
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
 }
 
 .Login header, .Register header, .PatientView header{
@@ -736,7 +736,7 @@ hr{
     position: relative;
     display: flex;
     justify-content: flex-start;
-    align-categorized-drugs: center;
+    align-items: center;
     flex-direction: column;
     width: 500px;
     height: 500px;
@@ -778,7 +778,7 @@ hr{
 .form{
     display: flex;
     justify-content: space-between;
-    align-categorized-drugs: center;
+    align-items: center;
     width: 400px;
 }
 
@@ -909,7 +909,7 @@ label.left{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-categorized-drugs: center;
+    align-items: center;
 }
 
 .Register{
@@ -1026,7 +1026,7 @@ label.left{
     background-position: center;
     display: flex;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
 }
   
 .image-desc {
@@ -1051,7 +1051,7 @@ label.left{
     transform: translateX(-50%) translateY(200px);
     display: flex;
     justify-content: center;
-    align-categorized-drugs: center;
+    align-items: center;
 }
   
 .arrow-buttons .uil {
