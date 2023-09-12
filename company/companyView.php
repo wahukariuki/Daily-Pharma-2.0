@@ -82,7 +82,7 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                 </div>
 
 
-                <ul class="items">
+                <ul class="categorized-drugs">
                     <?php
                     // Assuming you want to display drugs of the selected category
                     if (isset($_POST['selectedCategory'])) {

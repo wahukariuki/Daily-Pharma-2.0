@@ -14,7 +14,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content:center;
-    align-items: center;
+    align-categorized-drugs: center;
 }
 
 */
@@ -37,7 +37,7 @@ header{
     background: transparent;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-categorized-drugs: center;
     backdrop-filter: blur(20px); 
     z-index: 3;
 }
@@ -113,7 +113,7 @@ nav a:not(:last-child):hover::after{
 #menu{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
     flex-direction: column;
     height: 100vh;
     width: 0;
@@ -203,7 +203,7 @@ nav a:not(:last-child):hover::after{
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
     flex-direction: column;
     height: 700px;
 }
@@ -219,7 +219,7 @@ nav a:not(:last-child):hover::after{
 .headline{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
     flex-direction: column;
 }
 .headline p:not(.span){
@@ -346,7 +346,7 @@ nav a:not(:last-child):hover::after{
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-categorized-drugs: center;
     text-align: center;
 }
 
@@ -386,7 +386,7 @@ nav a:not(:last-child):hover::after{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
 }
 
 .features-icon img{
@@ -416,7 +416,7 @@ nav a:not(:last-child):hover::after{
 @media screen and (max-width:580px) {
     .feature-box{
         width: 95%;
-        align-items:flex-start;
+        align-categorized-drugs:flex-start;
         text-align: start;
     }
 
@@ -567,7 +567,7 @@ hr{
     margin: auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-categorized-drugs: flex-start;
     flex-wrap: wrap;
 }
 
@@ -592,7 +592,7 @@ hr{
 
 .user{
     display: flex;
-    align-items: center;
+    align-categorized-drugs: center;
     margin: 20px 0;
 }
 
@@ -638,7 +638,7 @@ hr{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-categorized-drugs: flex-start;
 }
 
 .footer-left, .footer-right{
@@ -711,7 +711,7 @@ hr{
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
 }
 
 .Login header, .Register header, .PatientView header{
@@ -736,7 +736,7 @@ hr{
     position: relative;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-categorized-drugs: center;
     flex-direction: column;
     width: 500px;
     height: 500px;
@@ -778,7 +778,7 @@ hr{
 .form{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-categorized-drugs: center;
     width: 400px;
 }
 
@@ -909,7 +909,7 @@ label.left{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-categorized-drugs: center;
 }
 
 .Register{
@@ -1026,7 +1026,7 @@ label.left{
     background-position: center;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
 }
   
 .image-desc {
@@ -1051,7 +1051,7 @@ label.left{
     transform: translateX(-50%) translateY(200px);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-categorized-drugs: center;
 }
   
 .arrow-buttons .uil {
@@ -1295,8 +1295,8 @@ button.btn.btn-primary.company, button.btn.btn-danger.company{
 
 
 
-ul.items {margin: 50px 10px -17px 0; padding: 0; width: 997px;}
-ul.items li {
+ul.categorized-drugs {margin: 50px 10px -17px 0; padding: 0; width: 997px;}
+ul.categorized-drugs li {
     display: inline-block;
     list-style: none;
     width: 204px;
@@ -1307,7 +1307,7 @@ ul.items li {
     left: -17px;
 }
 
-ul.items li a {
+ul.categorized-drugs li a {
     background: #f3f3f3;
     display: inline-block;
     padding: 30px 30px;
@@ -1317,15 +1317,15 @@ ul.items li a {
 /* .details-button {
   color: #888;
 } */
-ul.items li a:hover {
+ul.categorized-drugs li a:hover {
     opacity: 1;
     color: #019587;
 }
-ul.items li img {
+ul.categorized-drugs li img {
     width: 190px;
     border: 6px solid #f0eeed;
 }
-ul.items li p {
+ul.categorized-drugs li p {
     margin-left: 0;
     margin-right: 0;
     width: auto;
