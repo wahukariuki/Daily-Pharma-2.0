@@ -47,7 +47,7 @@ $username = $_SESSION["username"];
     
             <?php
                 echo '<div class="profile">';
-                echo '<a href="profile.php">';
+                echo '<a href="../profile.php">';
                 echo '<i class="uil uil-user"></i>' . $username . '';
                 echo '</a>';
                 echo '</div>';

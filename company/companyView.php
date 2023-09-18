@@ -45,7 +45,7 @@ include "../functions.php";
 
         <div class="main_content">
 
-            <div class="category-content" id="Manage-Drugs">
+            <div class="category-content active" id="Manage-Drugs">
                 <div class="container my-5">
                 <h2>List of Drugs</h2>
 <br>
@@ -75,9 +75,6 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                             <button class="btn btn-primary company" type="submit" name="selectedCategory" value="<?php echo $category; ?>"><?php echo $category; ?></button>
                         <?php endforeach; ?>
                         <button class="btn btn-danger company" type="submit" name="selectedCategory" value="null">No Filter</button>
-                        <button class="btn btn-danger company" type="submit" name="selectedCategory" value="null">No Filter</button>
-                        <button class="btn btn-danger company" type="submit" name="selectedCategory" value="null">No Filter</button>
-                        <button class="btn btn-danger company" type="submit" name="selectedCategory" value="null">No Filter</button>
                     </form>
                 </div>
 
@@ -100,11 +97,11 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
 
 
             foreach ($drugCategory as $eachDrug) {
-                echo "<li><a href='details.php?id=" . $eachDrug["Drug_ID"] . "'>";
+                echo "<li class='items'>";
                 echo '<img src="data:image/png;base64,' . base64_encode($eachDrug['Drug_Image']) . '" alt="' . $eachDrug['Drug_Name'] . '">';
-                echo "<p>" . strtoupper( $eachDrug["Drug_Name"] ). "</p>";
-                echo "<p>View Details</p>";
-                echo "</a></li>";
+                echo "<p class='items name'>" . strtoupper( $eachDrug["Drug_Name"] ). "</p>";
+                echo "<a href='details.php?id=" . $eachDrug["Drug_ID"] . "'><p class='items link'>View Details</p></a>";
+                echo "</li>";
             }
 
 
@@ -159,8 +156,6 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                 </tbody>-->
             </table>
         </div>
-    </div>
-
 
             <div class="category-content" id="Manage-Contracts">
                 <div class="container my-5">

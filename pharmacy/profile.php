@@ -97,3 +97,4 @@ $address = $row["Pharmacy_Address"];
         </form>
     </div>
 </body>
+</html>
