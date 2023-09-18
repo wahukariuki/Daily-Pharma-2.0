@@ -31,9 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $query = $conn->prepare("INSERT INTO `company`(`Company_Name`, `Company_Email`, `Company_Phone`, `Password`) VALUES  (?, ?, ?, ?)");
         $query->bind_param('ssis', $companyName, $companyEmail, $companyPhone, $password);
         if ($query->execute()) {
-            // Registration successful, redirect to login page
-            header("Location: ../login.html");
+            $companyID = mysqli_insert_id($conn);
+            echo "<script>alert('Your Company ID: $companyID'); window.location.href = '../login.html';</script>";
             exit;
+        //if ($query->execute()) {
+            // Registration successful, redirect to login page
+           // header("Location: ../login.html");
+           // exit;
         } else {
             $error = 'Error registering the user. Please try again later.';
         }

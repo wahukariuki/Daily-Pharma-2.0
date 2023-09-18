@@ -45,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $query->bind_param('isssissss', $patientSSN, $patientName, $patientAddress, $patientEmail, $patientPhone, $patientGender, $patientDOB, $patientAge, $password);
         if ($query->execute()) {
             // Registration successful, redirect to login page
+            
+    
             header("Location: ../login.html");
             exit;
         } else {

@@ -8,11 +8,15 @@ $drug_desc  = "";
 $drug_quantity = "";
 $drug_expiry  = "";
 $drug_manuf  = "";
+$drug_category="";
+$drug_image="";
 
 $errorMessage = "";
 $successMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $drug_image=$_POST["Drug_image"];
+    $drug_category=$_POST["Drug_Category"];
     $drug_name = $_POST["Drug_Name"];
     $drug_company = $_POST["Drug_Company"];
     $drug_desc = $_POST["Drug_Description"];
@@ -24,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     do {
 
         $sql = "
-        INSERT INTO `drugs`(`Drug_Name`, `Drug_Description`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`)
-         VALUES('$drug_name', '$drug_desc', '$drug_quantity', '$drug_expiry',  '$drug_manuf', '$drug_company')";
+        INSERT INTO `drugs`(`Drug_Name`, `Drug_Description`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`,`Drug_Category`,`Drug_Image`)
+         VALUES('$drug_name', '$drug_desc', '$drug_quantity', '$drug_expiry',  '$drug_manuf', '$drug_company','$drug_category','$drug_image')";
         $result = $conn->query($sql);
 
         if (!$result) {
@@ -39,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $drug_quantity = "";
         $drug_expiry  = "";
         $drug_manuf  = "";
+        $drug_category="";
+        $drug_image="";
 
         $successMessage = "Drug added successfully";
         header("Location: companyView.php");
@@ -103,6 +109,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="date" class="form-control" name="Drug_Manufacturing_Date" value="<?php echo $drug_price; ?>">
                 </div>
             </div>
+            <div class="row">
+            <label class="col-sm-3 col-form-label">Drug Category</label>
+            <div class="col-sm-6">
+                    <select name="category" id="category">
+                        <option value="antibiotic">Antibiotic</option>
+                        <option value="Antifungal">Antifungal drugs</option>
+                        <option value="Pain reliever">Pain relievers</option>
+                        <option value="Immunosuppressants">Immunosupressants</option>
+                        <option value="Antiparasitic">Antiparasitic </option>
+                        <option value="Immunotherapy">Immunotherapy</option>
+                    </select>
+                </div>
+               
+            </div><br>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Upload an image of the drug</label>
+                <div class="col-sm-6">
+                    <input type="file" name="Drug_image" value="<?php echo $drug_image; ?>">
+                </div>
+            </div>
+            
 
             <input type="hidden" name="Drug_Company" value="<?php echo $ID ;?>">
 

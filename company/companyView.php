@@ -40,12 +40,13 @@ include "../functions.php";
             <ul class="category-list">
                 <li class="category-item active" data-category="Manage-Drugs">MANAGE DRUGS</li>
                 <li class="category-item" data-category="Manage-Contracts">MANAGE CONTRACTS</li>
+                <li class="category-item" data-category="View-Drugs">VIEW ALL DRUGS IN THE SYSTEM</li>
             </ul>
         </div>
 
-        <div class="main_content">
+          <div class="main_content">
 
-            <div class="category-content active" id="Manage-Drugs">
+            <div class="category-content" id="Manage-Drugs">
                 <div class="container my-5">
                 <h2>List of Drugs</h2>
 <br>
@@ -134,28 +135,29 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                         
                     // $result = $conn->query($sql);
 
-                    // if ($result->num_rows > 0) {
-                    //     while ($row = $result->fetch_assoc()){
-                    //     echo"
-                    //     <tr>                                 
-                    //         <td>$row[Drug_ID]</td>
-                    //         <td>$row[Drug_Name]</td>
-                    //         <td>$row[Drug_Description]</td>
-                    //         <td>$row[Drug_Expiration_Date]</td>
-                    //         <td>$row[Drug_Manufacturing_Date]</td>
-                    //         <td>
-                    //         <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
-                    //     </td>
-                    
-                    //     </tr>";
-                    //     }
-                    // } else {
-                    //     echo "<tr><td colspan='6'>No drugs in stock.</td></tr>";
-                    // }
-                ?>
-                </tbody>-->
-            </table>
-        </div>
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()){
+                                echo"
+                                <tr>                                 
+                                    <td>$row[Drug_ID]</td>
+                                    <td>$row[Drug_Name]</td>
+                                    <td>$row[Drug_Description]</td>
+                                    <td>$row[Drug_Expiration_Date]</td>
+                                    <td>$row[Drug_Manufacturing_Date]</td>
+                                    <td>
+                                    <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
+                                </td>
+                            
+                                </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='6'>No drugs in stock.</td></tr>";
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             <div class="category-content" id="Manage-Contracts">
                 <div class="container my-5">
@@ -212,7 +214,28 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                     </table>
                 </div>
             </div>
+           
+            <div class="category-content" id="View-Drugs">
+                <div class="container my-5">
+                <div class="categories">
+        <H1>Selelct a category</H1>
+        <ul>
+        <?php $section = isset($_GET['cat']) ? $_GET['cat'] : null; ?>
+
+            <li class="antibiotics" <?php if($section=="antibiotics"){echo "on";}?>><a href="viewDrugs.php?cat=antibiotics">Antibiotics</a></li>
+            <li class="painrelievers"<?php if($section=="painrelievers"){echo "on";}?>><a href="viewDrugs.php?cat=painrelievers">Pain relievers</a></li>
+            <li class="antifungal" <?php if($section=="antifungal"){echo "on";}?>><a href="viewDrugs.php?cat=antifungal">Antifungal</a></li>
+            <li class="immunotherapy" <?php if($section=="immunotherapy"){echo "on";}?>><a href="viewDrugs.php?cat=immunotherapy">Immunotherapy</a></li>
+            <li class="immunosuppressants" <?php if($section=="immunosuppressants"){echo "on";}?>><a href="viewDrugs.php?cat=immunosuppressants">Immunosuppressants</a></li>
+            <li class="antiparasitic" <?php if($section=="antiparasitic"){echo "on";}?>><a href="viewDrugs.php?cat=antiparasitic">AntiParasitic</a></li>
+        </ul>
+    </div>
+    
+                </div>
+            </div>
+
         </div>
+
 
     </div>
 

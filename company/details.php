@@ -1,0 +1,44 @@
+<?php
+include '../inc/view_header.php';
+include '../patients/connect.php';
+if(isset($_GET["Drug_ID"])){
+    $Drug_ID=$_GET["Drug_ID"];
+    $sql="SELECT * FROM drugs WHERE Drug_ID= ? ";
+    $stmt=$conn->prepare($sql);
+    if($stmt){
+        $stmt->bind_param("i",$Drug_ID);
+        $stmt->execute();
+       $result= $stmt->get_result();
+        if($result->num_rows>0){
+            $row = $result->fetch_assoc();
+          $pageTitle=$row['Drug_Name'];
+          echo '<div class="Drug-details">';
+          echo '<br><br><br><br><br><br><h1>DRUG INFORMATION</h1>';
+          echo ' <p> Drug ID:'.$row['Drug_ID'].'</p>';
+          echo ' <p> Drug name:'.$row['Drug_Name'].'</p>';
+          echo '<p> Drug decscription:'.$row['Drug_Description'].'</p>';
+          echo '<p> Drug Quantity:'.$row['Drug_Quantity'].'</p>';
+          echo '<p> Drug Manufacturing date:'.$row['Drug_Manufacturing_Date'].'</p>';
+          echo '<p> Drug Expiration date:'.$row['Drug_Expiration_Date'].'</p>';
+          echo '<p> Company Manufacturing the drug:'.$row['Drug_Company'].'</p>';
+          echo '<p> Drug category:'.$row['Drug_Category'].'</p>';
+          echo '<p> Drug Image:</p>';
+          echo  '<img src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
+           
+        
+       // Close the div
+    echo '</div>';
+} else {
+    echo "No drug found with the provided ID.";
+}
+} else {
+echo "Error in preparing the SQL statement.";
+}
+
+// Close the database connection
+$stmt->close();
+$conn->close();
+    
+    
+}
+?>

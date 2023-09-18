@@ -11,5 +11,5 @@ $conn= new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection Error");
 }
-
+$conn->set_charset("utf8");
 ?>
