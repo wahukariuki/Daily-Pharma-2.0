@@ -28,7 +28,7 @@ $phone = $row["Company_Phone"];
     <meta http-equiv="X-UA-COMPLATIBLE" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial scale=1.0">
     <title>USERS</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap.css">
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -67,7 +67,7 @@ $phone = $row["Company_Phone"];
             <div class="row mb-3">
                 <label class="col-sm-3 col-form label">ID</label>
                 <div class="col-sm-6">
-                <input type="number" name="Company_ID" value="<?php echo $ID; ?>" readonly>
+                <input type="number" class="form-control" name="Company_ID" value="<?php echo $ID; ?>" readonly>
                 </div>
             </div>
             <div class="row mb-3">
@@ -88,6 +88,12 @@ $phone = $row["Company_Phone"];
                     <input type="text" class="form-control" name="Company_Phone" value="<?php echo $phone?>" readonly>
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="offset-sm-3 col-sm-3 d-grid">
+                    <a class="btn btn-primary" href="companyView.php" role="button">Back</a>
+                </div>
+            </div>
         </form>
     </div>
 </body>
+</html>

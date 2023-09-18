@@ -1,5 +1,6 @@
 <?php
 include "../inc/view_header.php";
+include "../functions.php";
 ?>
 
     <!-- Above fold -->
@@ -45,36 +46,94 @@ include "../inc/view_header.php";
 
           <div class="main_content">
 
-            
             <div class="category-content" id="Manage-Drugs">
                 <div class="container my-5">
-                    <h2>List of Drugs</h2>            
-                    <br>
-                    <a class="btn btn-primary" href="adddrugs.php" role="button">Add Drugs</a>
-                    <br>
-    
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Drug ID</th>
-                                <th>Drug Name</th>
-                                <th>Drug Description</th>
-                                <th>Drug Expiration Date</th>
-                                <th>Drug Manufacturing Date</th>       
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                            require_once("../connect.php");
+                <h2>List of Drugs</h2>
+<br>
+                <a class="btn btn-primary" href="adddrugs.php" role="button">Add Drugs</a>
+<br>
+<?php
+// Assuming you have already established a database connection ($conn)
 
-                            $sql = "
-                            SELECT * 
-                            FROM drugs d
-                            WHERE d.Drug_Company = '$ID'
-                            ;";
-                                
-                            $result = $conn->query($sql);
+// Fetch unique drug categories
+$uniqueCategoriesQuery = $conn->query("
+SELECT DISTINCT Drug_Category
+FROM drugs
+WHERE Drug_Company = '$ID'
+;");
+
+$uniqueCategories = array();
+while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
+    $uniqueCategories[] = $row['Drug_Category'];
+}
+?>
+
+
+                <div class="select-container">
+                    <form method="POST" class="select-container company">
+                        <label for="selectedCategory">Categories: </label>
+                        <?php foreach ($uniqueCategories as $category) : ?>
+                            <button class="btn btn-primary company" type="submit" name="selectedCategory" value="<?php echo $category; ?>"><?php echo $category; ?></button>
+                        <?php endforeach; ?>
+                        <button class="btn btn-danger company" type="submit" name="selectedCategory" value="null">No Filter</button>
+                    </form>
+                </div>
+
+
+                <ul class="categorized-drugs">
+                    <?php
+                    // Assuming you want to display drugs of the selected category
+                    if (isset($_POST['selectedCategory'])) {
+                        $selectedCategory = $_POST['selectedCategory'];
+
+                        $query2 =  $conn->query("SELECT *
+                        FROM drugs d
+                        WHERE d.Drug_Category = '$selectedCategory'
+                        ;");
+
+                        $drugCategory = array();
+                        while ($row = $query2->fetch_assoc()) {
+                            $drugCategory[] = $row;
+                        }
+
+
+            foreach ($drugCategory as $eachDrug) {
+                echo "<li class='items'>";
+                echo '<img src="data:image/png;base64,' . base64_encode($eachDrug['Drug_Image']) . '" alt="' . $eachDrug['Drug_Name'] . '">';
+                echo "<p class='items name'>" . strtoupper( $eachDrug["Drug_Name"] ). "</p>";
+                echo "<a href='details.php?id=" . $eachDrug["Drug_ID"] . "'><p class='items link'>View Details</p></a>";
+                echo "</li>";
+            }
+
+
+                    }
+                    ?>
+                </ul>
+    </div>
+
+    
+            <table class="table">
+                <!-- <thead>
+                    <tr>
+                        <th>Drug ID</th>
+                        <th>Drug Name</th>
+                        <th>Drug Description</th>
+                        <th>Drug Expiration Date</th>
+                        <th>Drug Manufacturing Date</th>       
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    // require_once("../connect.php");
+
+                    // $sql = "
+                    // SELECT * 
+                    // FROM drugs d
+                    // WHERE d.Drug_Company = '$ID'
+                    // ;";
+                        
+                    // $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()){
@@ -85,7 +144,6 @@ include "../inc/view_header.php";
                                     <td>$row[Drug_Description]</td>
                                     <td>$row[Drug_Expiration_Date]</td>
                                     <td>$row[Drug_Manufacturing_Date]</td>
-                                    <td><a  href='details.php?Drug_ID=" . $row["Drug_ID"] . "'>View Details</a></td>
                                     <td>
                                     <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
                                 </td>
@@ -180,6 +238,46 @@ include "../inc/view_header.php";
 
 
     </div>
+
+    <script>
+        const selectElement = document.getElementById("availableDrugs");
+        const drugInfoDiv = document.getElementById("drugInfo");
+        const drugNameParagraph = document.getElementById("drugName");
+        const drugPriceParagraph = document.getElementById("drugPrice");
+        const drugDescriptionParagraph = document.getElementById("drugDescription");
+        const drugManufacturingDateParagraph = document.getElementById("drugManufacturingDate");
+        const drugExpirationDateParagraph = document.getElementById("drugExpirationDate");
+
+        selectElement.addEventListener("change", (event) => {
+            const selectedDrug = event.target.value;
+            if (selectedDrug) {
+                //convert from php array to js array
+                const drug = <?php echo json_encode($drugInformation); ?>;
+                const selectedDrugID = drug.find((item) => item.Drug_ID === selectedDrug);
+                
+                fetch("store_selected_drug.php", {
+                    method: "POST",
+                    body: JSON.stringify({ selectedDrug }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                });
+                if (selectedDrugID) {
+                    drugNameParagraph.textContent = "Drug Name: " + selectedDrugID.Drug_Name;
+                    drugPriceParagraph.textContent = "Price: " + selectedDrugID.Drug_Price;
+                    drugDescriptionParagraph.textContent = "Description: " + selectedDrugID.Drug_Description;
+                    drugManufacturingDateParagraph.textContent = "Manufacturing Date: " + selectedDrugID.Drug_Manufacturing_Date;
+                    drugExpirationDateParagraph.textContent = "Expiration Date: " + selectedDrugID.Drug_Expiration_Date;
+                    drugInfoDiv.style.display = "block";
+                } else {
+                    drugInfoDiv.style.display = "none";
+                }
+            } else {
+                drugInfoDiv.style.display = "none";
+            }
+        });
+    </script>
 
 
     <script src="../overlay_script.js"></script>
