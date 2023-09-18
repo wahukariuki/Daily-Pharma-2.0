@@ -112,7 +112,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="row">
             <label class="col-sm-3 col-form-label">Drug Category</label>
             <div class="col-sm-6">
-                    <input type="text" class="form-control" name="Drug_Category" value="<?php echo $drug_category; ?>">
+                    <select name="category" id="category">
+                        <option value="antibiotic">Antibiotic</option>
+                        <option value="Antifungal">Antifungal drugs</option>
+                        <option value="Pain reliever">Pain relievers</option>
+                        <option value="Immunosuppressants">Immunosupressants</option>
+                        <option value="Antiparasitic">Antiparasitic </option>
+                        <option value="Immunotherapy">Immunotherapy</option>
+                    </select>
                 </div>
                
             </div><br>
