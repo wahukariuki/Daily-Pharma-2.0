@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User Feedback Example</title>
+</head>
+<body>
+
+<!-- Feedback container -->
+<div id="feedback" style="display: none;"></div>
+
+<button onclick="registerUser()">Register User</button>
+
+<script>
+function registerUser() {
+    // Simulate a successful registration
+    // In a real application, you would perform registration logic here
+    
+    // Display the feedback message
+    var feedback = document.getElementById("feedback");
+    feedback.innerText = "User successfully registered";
+    feedback.style.display = "block";
+    
+    // Automatically hide the feedback after 3 seconds (3000 milliseconds)
+    setTimeout(function() {
+        feedback.style.display = "none";
+    }, 3000);
+}
+</script>
+
+</body>
+</html>
