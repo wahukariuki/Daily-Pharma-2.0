@@ -67,9 +67,7 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
     $uniqueCategories[] = $row['Drug_Category'];
 }
 ?>
-
-
-                <div class="select-container">
+                <div>
                     <form method="POST" class="select-container company">
                         <label for="selectedCategory">Categories: </label>
                         <?php foreach ($uniqueCategories as $category) : ?>
@@ -112,8 +110,8 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
     </div>
 
     
-            <!-- <table class="table"> -->
-                <!-- <thead>
+             <table class="table">
+                <thead>
                     <tr>
                         <th>Drug ID</th>
                         <th>Drug Name</th>
@@ -125,39 +123,38 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                 </thead>
                 <tbody>
                 <?php
-                    // require_once("../connect.php");
+                    require_once("../connect.php");
 
-                    // $sql = "
-                    // SELECT * 
-                    // FROM drugs d
-                    // WHERE d.Drug_Company = '$ID'
-                    // ;";
+                    $sql = "
+                    SELECT * 
+                    FROM drugs d
+                    WHERE d.Drug_Company = '$ID'
+                    ;";
                         
-                    // $result = $conn->query($sql);
+                    $result = $conn->query($sql);
 
-                            // if ($result->num_rows > 0) {
-                            //     while ($row = $result->fetch_assoc()){
-                            //     echo"
-                            //     <tr>                                 
-                            //         <td>$row[Drug_ID]</td>
-                            //         <td>$row[Drug_Name]</td>
-                            //         <td>$row[Drug_Description]</td>
-                            //         <td>$row[Drug_Expiration_Date]</td>
-                            //         <td>$row[Drug_Manufacturing_Date]</td>
-                            //         <td>
-                            //         <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
-                            //     </td>
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()){
+                                echo"
+                                <tr>                                 
+                                    <td>$row[Drug_ID]</td>
+                                    <td>$row[Drug_Name]</td>
+                                    <td>$row[Drug_Description]</td>
+                                    <td>$row[Drug_Expiration_Date]</td>
+                                    <td>$row[Drug_Manufacturing_Date]</td>
+                                    <td>
+                                    <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
+                                </td>
                             
-                            //     </tr>";
-                            //     }
-                            // } else {
-                            //     echo "<tr><td colspan='6'>No drugs in stock.</td></tr>";
-                            // }
+                                </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='6'>No drugs in stock.</td></tr>";
+                            }
                         ?>
                         </tbody>
                     </table>
-                </div> -->
-            </div> 
+                </div>
 
             <div class="category-content" id="Manage-Contracts">
                 <div class="container my-5">
@@ -233,10 +230,7 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
     
                 </div>
             </div>
-
-        </div>
-
-
+        </div> 
     </div>
 
     <script>
