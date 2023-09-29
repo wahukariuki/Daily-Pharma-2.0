@@ -74,6 +74,12 @@ body{
     font-weight: 600;
 }
 
+.btn-login-popup a{
+    text-decoration: none;
+    color: black;
+
+}
+
 .details h1{
     text-align: center;
     text-transform: capitalize;
@@ -137,12 +143,5 @@ body{
     }
     
 }
-.details {
-    /* display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    flex-direction: row; */
 
-}
 

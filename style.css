@@ -155,7 +155,6 @@ nav a:not(:last-child):hover::after{
     text-decoration: none;
     color: black;
     text-align: center;
-    padding-top: 6px;
     transition: all .5s ease;
 }
 
