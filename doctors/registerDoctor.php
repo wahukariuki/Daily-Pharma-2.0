@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $query->bind_param('ssssis', $doctorSSN, $doctorName, $doctorPhone, $doctorSpeciality, $doctorExperience, $password);
         if ($query->execute()) {
             // Registration successful, redirect to login page
-            header("Location: ../login.html");
+            eecho "<script>alert(' User succesfully registered'); window.location.href = '../login.html';</script>"
             exit;
         } else {
             $error = 'Error registering the user. Please try again later.';

@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="categories">
-        <H1>Selelct a category</H1>
+        <H1>Selelct a category</H1> <a  href="companyView.php">Back to main</a>
         <ul>
         <?php $section = isset($_GET['cat']) ? $_GET['cat'] : null; ?>
-
+        
             <li class="antibiotics" <?php if($section=="antibiotics"){echo "on";}?>><a href="viewDrugs.php?cat=antibiotics">Antibiotics</a></li>
             <li class="painrelievers"<?php if($section=="painrelievers"){echo "on";}?>><a href="viewDrugs.php?cat=painrelievers">Pain relievers</a></li>
             <li class="antifungal" <?php if($section=="antifungal"){echo "on";}?>><a href="viewDrugs.php?cat=antifungal">Antifungal</a></li>
@@ -250,9 +250,9 @@ if(isset($_GET['cat'])){
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<div class="product">';
-              //  $imageData= $row["Drug_Image"];
+              // $imageData= $row["Drug_Image"];
                 //header('Content-Type:image/jpeg');
-               // echo $imageData;
+                //echo $imageData;
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
                // echo '<img  src="data:image/png;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
                 echo '<p>' . $row["Drug_Name"] . '</p>';
@@ -350,7 +350,7 @@ if(isset($_GET['cat'])){
                // $imageData= $row["Drug_Image"];
                 //header('Content-Type:image/jpeg');
                 //echo $imageData;
-              //  echo '<img src="' . $row["Drug_Image"] . '" alt="' . $row["Drug_Name"] . '">';
+               //echo '<img src="' . $row["Drug_Image"] . '" alt="' . $row["Drug_Name"] . '">';
               echo '<img src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
              // echo '<img src="data:image/png;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
                 echo '<p>' . $row["Drug_Name"] . '</p>';

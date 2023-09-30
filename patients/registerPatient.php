@@ -46,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($query->execute()) {
             // Registration successful, redirect to login page
             
-    
-            header("Location: ../login.html");
+            echo "<script>alert(' User succesfully registered'); window.location.href = '../login.html';</script>";
+            
             exit;
         } else {
             $error = 'Error registering the user. Please try again later.';
