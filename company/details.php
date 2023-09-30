@@ -33,6 +33,7 @@ if(isset($_GET["Drug_ID"])){
           </style>';
        
           echo '<br><br><br><br><br><br><h1>DRUG INFORMATION</h1>';
+          echo '<a href="viewDrugs.php">Back to main</a>';
           echo '<div class="Drug-container">';
           echo '<div class="Drug-image">';
           echo  '<img  src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
