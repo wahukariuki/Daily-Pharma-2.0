@@ -44,72 +44,16 @@ include "../functions.php";
             </ul>
         </div>
 
-          <div class="main_content">            
+          <div class="main_content">
+
             <div class="category-content active" id="Manage-Drugs">
                 <div class="container my-5">
                 <h2>List of Drugs</h2>
 <br>
                 <a class="btn btn-primary" href="adddrugs.php" role="button">Add Drugs</a>
 <br>
-<?php
-// Assuming you have already established a database connection ($conn)
-
-// Fetch unique drug categories
-$uniqueCategoriesQuery = $conn->query("
-SELECT DISTINCT Drug_Category
-FROM drugs
-WHERE Drug_Company = '$ID'
-;");
-$uniqueCategories = array();
-while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
-    $uniqueCategories[] = $row['Drug_Category'];
-}
-?>
-                <div class="select-container">
-                    <form method="POST" class="select-container company">
-                        <label for="selectedCategory">Categories: </label>
-                        <?php foreach ($uniqueCategories as $category) : ?>
-                            <button class="btn btn-primary company" type="submit" name="selectedCategory" value="<?php echo $category; ?>"><?php echo $category; ?></button>
-                        <?php endforeach; ?>
-                        <button class="btn btn-danger company" type="submit" name="selectedCategory" value="null">No Filter</button>
-                    </form>
-                </div>
-
-
-                <ul class="categorized-drugs">
-                    <?php
-                    // Assuming you want to display drugs of the selected category
-                    if (isset($_POST['selectedCategory'])) {
-                        $selectedCategory = $_POST['selectedCategory'];
-
-                        $query2 =  $conn->query("SELECT *
-                        FROM drugs d
-                        WHERE d.Drug_Category = '$selectedCategory'
-                        ;");
-
-                        $drugCategory = array();
-                        while ($row = $query2->fetch_assoc()) {
-                            $drugCategory[] = $row;
-                        }
-
-
-            foreach ($drugCategory as $eachDrug) {
-                echo "<li class='items'>";
-                echo '<img src="data:image/png;base64,' . base64_encode($eachDrug['Drug_Image']) . '" alt="' . $eachDrug['Drug_Name'] . '">';
-                echo "<p class='items name'>" . strtoupper( $eachDrug["Drug_Name"] ). "</p>";
-                echo "<a href='details.php?id=" . $eachDrug["Drug_ID"] . "'><p class='items link'>View Details</p></a>";
-                echo "</li>";
-            }
-
-
-                    }
-                    ?>
-                </ul>
-    </div>
-
-    
-            <!-- <table class="table"> -->
-                <!-- <thead>
+             <table class="table">
+                <thead>
                     <tr>
                         <th>Drug ID</th>
                         <th>Drug Name</th>
@@ -121,15 +65,15 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
                 </thead>
                 <tbody>
                 <?php
-                    // require_once("../connect.php");
+                    require_once("../connect.php");
 
-                    // $sql = "
-                    // SELECT * 
-                    // FROM drugs d
-                    // WHERE d.Drug_Company = '$ID'
-                    // ;";
+                    $sql = "
+                    SELECT * 
+                    FROM drugs d
+                    WHERE d.Drug_Company = '$ID'
+                    ;";
                         
-                    // $result = $conn->query($sql);
+                    $result = $conn->query($sql);
 
                     // if ($result->num_rows > 0) {
                     //     while ($row = $result->fetch_assoc()){
@@ -227,7 +171,7 @@ while ($row = $uniqueCategoriesQuery->fetch_assoc()) {
     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
     <script src="../overlay_script.js"></script>
     <script src="../image_slider.js"></script>

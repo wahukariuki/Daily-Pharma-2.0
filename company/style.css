@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+body, h1, h2, ul, li, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+
+}
+
+hr{
+    color: black;
+}
+
+body{
+    background: linear-gradient(#019587, #fff);
+    background-repeat: no-repeat;
+}
+
+.categories{
+    margin-top: 150px;
+    width: 96%;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    display: inline-block;
+}
+
+.categories ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.categories ul li{
+    list-style: none;
+    display: inline-block;
+}
+
+/* .categories ul li::after{
+    content:'';
+    height: 3px;
+    width:0;
+    background: rgb(0, 0, 0);
+    position: absolute;
+    left:0;
+    bottom:-3px;
+    transition: 0.5s;
+}
+
+.categories ul li:hover::after{
+    width: 100%;
+} */
+
+.categories ul li a{
+    color: black;
+    text-decoration: none;
+    padding: 10px 10px;
+    display: block;
+    transition: 0.5s ease-in;
+    font-size: 1.1em;
+}
+
+.categories ul li a:hover{
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.categories h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.btn-login-popup a{
+    text-decoration: none;
+    color: black;
+
+}
+
+.details h1{
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.category-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-basis: 100%;
+}
+/* Style the product listings */
+.product {
+    background-color: #fafafa;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 10px 20px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    flex-basis: 25%;
+}
+
+.product img {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
+}
+
+.product p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.product a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #29c3b3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: .5s ease;
+}
+
+.product a:hover{
+    background-color: #019587;
+}
+
+/* Responsive styles (adjust as needed) */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    .categories {
+        padding: 10px;
+    }
+    .product {
+        margin: 10px 0;
+    }
+    
+}
+
+

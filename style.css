@@ -24,7 +24,6 @@ body{
     margin-top: 100px;
 }
 
-
 /*--Header and menu--*/
   
 header{
@@ -98,7 +97,6 @@ nav a:not(:last-child):hover::after{
     transform: scaleX(1);
     background: black;
     color: black;
-
 }
 
 .navbar-toggle {
@@ -157,7 +155,6 @@ nav a:not(:last-child):hover::after{
     text-decoration: none;
     color: black;
     text-align: center;
-    padding-top: 6px;
     transition: all .5s ease;
 }
 
