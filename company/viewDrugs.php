@@ -12,7 +12,7 @@
     <div class="categories">
     <button class="btn-login-popup" onclick="window.location.href='companyView.php'">BACK</button>
     <br><br>
-    
+
         <hr>
         <strong><center><h1>CATEGORIES</h1></center></strong>
         <ul>
@@ -191,5 +191,8 @@
 
     ?>
     </div>
+
+    <div class="item"></div>
+
 </body>
 </html>
