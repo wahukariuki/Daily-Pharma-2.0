@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $query->bind_param('ssiss', $pharmacyName, $pharmacyEmail, $pharmacyPhone, $pharmacyAddress, $password);
         if ($query->execute()) {
             $pharmacyID = mysqli_insert_id($conn);
-            echo "<script>alert('Your Pharmacy ID: $pharmacyID'); window.location.href = '../login.html';</script>";
+            echo "<script>alert('You have succesfully registered.Your Pharmacy ID: $pharmacyID'). ; window.location.href = '../login.html';</script>";
             exit;
         } else {
             $error = 'Error registering the user. Please try again later.';

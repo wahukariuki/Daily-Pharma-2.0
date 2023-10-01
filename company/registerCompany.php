@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $query->bind_param('ssis', $companyName, $companyEmail, $companyPhone, $password);
         if ($query->execute()) {
             $companyID = mysqli_insert_id($conn);
-            echo "<script>alert('Your Company ID: $companyID'); window.location.href = '../login.html';</script>";
+            echo "<script>alert('Your Company ID: $companyID. Successful Registration'); window.location.href = '../login.html';</script>";
             exit;
         //if ($query->execute()) {
             // Registration successful, redirect to login page

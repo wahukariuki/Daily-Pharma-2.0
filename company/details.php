@@ -6,14 +6,39 @@ if(isset($_GET["Drug_ID"])){
     $sql="SELECT * FROM drugs WHERE Drug_ID= ? ";
     $stmt=$conn->prepare($sql);
     if($stmt){
+
         $stmt->bind_param("i",$Drug_ID);
         $stmt->execute();
        $result= $stmt->get_result();
         if($result->num_rows>0){
             $row = $result->fetch_assoc();
           $pageTitle=$row['Drug_Name'];
-          echo '<div class="Drug-details">';
+          echo'
+          <style>
+          .Drug-container{
+            display:flex;
+            align-items:center;
+          }
+          .Drug-image{
+            max-width:40%;
+            flex:1;
+            padding: 20px;
+        }
+            .Drug-details{
+                flex:2;
+                padding:20px;
+
+            }
+
+          </style>';
+       
           echo '<br><br><br><br><br><br><h1>DRUG INFORMATION</h1>';
+          echo '<a href="viewDrugs.php">Back to main</a>';
+          echo '<div class="Drug-container">';
+          echo '<div class="Drug-image">';
+          echo  '<img  src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
+          echo '</div>';
+          echo '<div class="Drug-details">';
           echo ' <p> Drug ID:'.$row['Drug_ID'].'</p>';
           echo ' <p> Drug name:'.$row['Drug_Name'].'</p>';
           echo '<p> Drug decscription:'.$row['Drug_Description'].'</p>';
@@ -23,8 +48,8 @@ if(isset($_GET["Drug_ID"])){
           echo '<p> Company Manufacturing the drug:'.$row['Drug_Company'].'</p>';
           echo '<p> Drug category:'.$row['Drug_Category'].'</p>';
           echo '<p> Drug Image:</p>';
-          echo  '<img src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
-           
+          
+          echo '</div>';
         
        // Close the div
     echo '</div>';

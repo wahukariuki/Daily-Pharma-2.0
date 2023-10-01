@@ -75,29 +75,29 @@ include "../functions.php";
                         
                     $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()){
-                                echo"
-                                <tr>                                 
-                                    <td>$row[Drug_ID]</td>
-                                    <td>$row[Drug_Name]</td>
-                                    <td>$row[Drug_Description]</td>
-                                    <td>$row[Drug_Expiration_Date]</td>
-                                    <td>$row[Drug_Manufacturing_Date]</td>
-                                    <td>
-                                    <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
-                                </td>
-                            
-                                </tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='6'>No drugs in stock.</td></tr>";
-                            }
-                        ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                    if ($result->num_rows > 0) {
+                         while ($row = $result->fetch_assoc()){
+                        echo"
+                        <tr>                                 
+                           <td>$row[Drug_ID]</td>
+                            <td>$row[Drug_Name]</td>
+                            <td>$row[Drug_Description]</td>
+                           <td>$row[Drug_Expiration_Date]</td>
+                           <td>$row[Drug_Manufacturing_Date]</td>
+                           <td>
+                            <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
+                        </td>
+                    
+                         </tr>";
+                         }
+                     } else {
+                        echo "<tr><td colspan='6'>No drugs in stock.</td></tr>";
+                     }
+                ?>
+                </tbody>
+             </table> 
+        </div>
+                    </div>
 
             <div class="category-content" id="Manage-Contracts">
                 <div class="container my-5">
@@ -157,8 +157,8 @@ include "../functions.php";
            
             <div class="category-content" id="View-Drugs">
                 <div class="container my-5">
-                <div class="categories">
-        <H1>Selelct a category</H1>
+                    <div class="categories">
+        <h1>Select a category</h1>
         <ul>
         <?php $section = isset($_GET['cat']) ? $_GET['cat'] : null; ?>
 
@@ -170,53 +170,10 @@ include "../functions.php";
             <li class="antiparasitic" <?php if($section=="antiparasitic"){echo "on";}?>><a href="viewDrugs.php?cat=antiparasitic">AntiParasitic</a></li>
         </ul>
     </div>
-    
                 </div>
             </div>
         </div> 
     </div>
-
-    <script>
-        const selectElement = document.getElementById("availableDrugs");
-        const drugInfoDiv = document.getElementById("drugInfo");
-        const drugNameParagraph = document.getElementById("drugName");
-        const drugPriceParagraph = document.getElementById("drugPrice");
-        const drugDescriptionParagraph = document.getElementById("drugDescription");
-        const drugManufacturingDateParagraph = document.getElementById("drugManufacturingDate");
-        const drugExpirationDateParagraph = document.getElementById("drugExpirationDate");
-
-        selectElement.addEventListener("change", (event) => {
-            const selectedDrug = event.target.value;
-            if (selectedDrug) {
-                //convert from php array to js array
-                const drug = <?php echo json_encode($drugInformation); ?>;
-                const selectedDrugID = drug.find((item) => item.Drug_ID === selectedDrug);
-                
-                fetch("store_selected_drug.php", {
-                    method: "POST",
-                    body: JSON.stringify({ selectedDrug }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.message);
-                });
-                if (selectedDrugID) {
-                    drugNameParagraph.textContent = "Drug Name: " + selectedDrugID.Drug_Name;
-                    drugPriceParagraph.textContent = "Price: " + selectedDrugID.Drug_Price;
-                    drugDescriptionParagraph.textContent = "Description: " + selectedDrugID.Drug_Description;
-                    drugManufacturingDateParagraph.textContent = "Manufacturing Date: " + selectedDrugID.Drug_Manufacturing_Date;
-                    drugExpirationDateParagraph.textContent = "Expiration Date: " + selectedDrugID.Drug_Expiration_Date;
-                    drugInfoDiv.style.display = "block";
-                } else {
-                    drugInfoDiv.style.display = "none";
-                }
-            } else {
-                drugInfoDiv.style.display = "none";
-            }
-        });
-    </script>
-
-
     <script src="../overlay_script.js"></script>
     <script src="../image_slider.js"></script>
     <script src="../category_selector.js"></script>
