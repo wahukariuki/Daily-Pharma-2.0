@@ -51,7 +51,6 @@ if(isset($_GET["Drug_ID"])){
           echo '<p> Drug Expiration date:'.$row['Drug_Expiration_Date'].'</p>';
           echo '<p> Company Manufacturing the drug:'.$row['Drug_Company'].'</p>';
           echo '<p> Drug category:'.$row['Drug_Category'].'</p>';
-          echo '<p> Drug Image:</p>';   
           echo '</div>';
         
        // Close the div
