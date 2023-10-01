@@ -29,7 +29,29 @@ if(isset($_GET["Drug_ID"])){
                 padding:20px;
 
             }
-
+            
+            table {
+                width: 80%;
+                border-collapse: collapse;
+            }
+        
+            th, td {
+                padding: 8px 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+        
+            th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+        
+        
+            tr:hover {
+                background-color: #ddd;
+            }
+        
+        
           </style>';
        
           echo '<br><br><br><br><br><br><h1>DRUG INFORMATION</h1>';
@@ -39,15 +61,16 @@ if(isset($_GET["Drug_ID"])){
           echo  '<img  src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
           echo '</div>';
           echo '<div class="Drug-details">';
-          echo ' <p> Drug ID:'.$row['Drug_ID'].'</p>';
-          echo ' <p> Drug name:'.$row['Drug_Name'].'</p>';
-          echo '<p> Drug decscription:'.$row['Drug_Description'].'</p>';
-          echo '<p> Drug Quantity:'.$row['Drug_Quantity'].'</p>';
-          echo '<p> Drug Manufacturing date:'.$row['Drug_Manufacturing_Date'].'</p>';
-          echo '<p> Drug Expiration date:'.$row['Drug_Expiration_Date'].'</p>';
-          echo '<p> Company Manufacturing the drug:'.$row['Drug_Company'].'</p>';
-          echo '<p> Drug category:'.$row['Drug_Category'].'</p>';
-          echo '<p> Drug Image:</p>';
+          
+          echo '<table> <tr> <th>Drug ID:</th><td>'.$row['Drug_ID'].'</td></tr>';
+          echo '<tr> <th>  Drug name:</th><td>'.$row['Drug_Name'].'</td></tr>';
+          echo '<tr> <th>  Drug decscription:</th><td>'.$row['Drug_Description'].'</td></tr>';
+          echo '<tr> <th>  Drug Quantity:</th><td>'.$row['Drug_Quantity'].'</td></tr>';
+          echo '<tr><th>  Manufacturing date:</th><td>'.$row['Drug_Manufacturing_Date'].'</td></tr>';
+          echo '<tr> <th>  Drug Expiration date:</th><td>'.$row['Drug_Expiration_Date'].'</td></tr>';
+          echo '<tr> <th>  Manufacturer ID:</th><td>'.$row['Drug_Company'].'</td></tr>';
+          echo '<tr> <th>  Drug category:</th><td>'.$row['Drug_Category'].'</td></tr></table>';
+         // echo '<tr> <th>  Drug Image:</p>';
           
           echo '</div>';
         
