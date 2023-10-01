@@ -18,22 +18,26 @@ if(isset($_GET["Drug_ID"])){
           .Drug-container{
             display:flex;
             align-items:center;
+            margin: 20px;
           }
           .Drug-image{
             max-width:40%;
             flex:1;
             padding: 20px;
         }
-            .Drug-details{
-                flex:2;
-                padding:20px;
-
-            }
+          .Drug-details{
+              flex:2;
+              padding:20px;
+          }
 
           </style>';
-       
-          echo '<br><br><br><br><br><br><h1>DRUG INFORMATION</h1>';
-          echo '<a href="viewDrugs.php">Back to main</a>';
+
+          echo '<br><br><br><br><br><br><a class="btn-login-popup" style="padding: 10px;margin:10px;" href="viewDrugs.php">Back to main</a>';
+          
+          echo '<br><br><br><hr>';       
+          echo '<center><h1>DRUG INFORMATION</h1></center>';
+          echo '<hr>';       
+
           echo '<div class="Drug-container">';
           echo '<div class="Drug-image">';
           echo  '<img  src="data:image/jpeg;base64,' . base64_encode($row["Drug_Image"]) . '" alt="' . $row["Drug_Name"] . '">';
@@ -47,8 +51,7 @@ if(isset($_GET["Drug_ID"])){
           echo '<p> Drug Expiration date:'.$row['Drug_Expiration_Date'].'</p>';
           echo '<p> Company Manufacturing the drug:'.$row['Drug_Company'].'</p>';
           echo '<p> Drug category:'.$row['Drug_Category'].'</p>';
-          echo '<p> Drug Image:</p>';
-          
+          echo '<p> Drug Image:</p>';   
           echo '</div>';
         
        // Close the div
