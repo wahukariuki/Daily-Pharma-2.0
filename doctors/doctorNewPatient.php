@@ -3,7 +3,7 @@ session_start();
 
 
 if (isset($_GET["id"])) {
-    $doctorID = $_SESSION["user"]["Doctor_SSN"];
+    $doctorID = $_SESSION["userid"];
     $patientID = $_GET["id"];
 
     require_once("connect.php");

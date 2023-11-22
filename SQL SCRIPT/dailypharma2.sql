@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2023 at 01:44 PM
+-- Generation Time: Sep 21, 2023 at 10:56 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dailypharma`
+-- Database: `dailypharma2`
 --
 
 -- --------------------------------------------------------
@@ -64,7 +64,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`Company_ID`, `Company_Name`, `Company_Email`, `Company_Phone`, `Password`, `Status`) VALUES
-(1, 'ABC Pharmaceuticals', 'abcpharma@gmail.com', 1234567890, 'password123', 'Pending'),
+(1, 'ABC Pharmaceuticals', 'abcpharma@gmail.com', 1234567890, 'password123', 'Active'),
 (2, 'XYZ Pharmaceuticals', 'xyzpharma@gmail.com', 2147483647, 'password456', 'active'),
 (3, 'PQR Pharmaceuticals', 'pqrpharma@gmail.com', 1112223333, 'password789', 'Pending'),
 (4, 'DEF Pharmaceuticals', 'defpharma@gmail.com', 2147483647, 'passwordabc', 'active'),
@@ -72,7 +72,8 @@ INSERT INTO `company` (`Company_ID`, `Company_Name`, `Company_Email`, `Company_P
 (6, 'Strathmore University', 'arnold.oketch@strathmore.edu', 705378979, '123123', 'active'),
 (7, 'Pharmagen', 'pharmagen@med.com', 9876543, 'passwordxyz', 'Pending'),
 (8, 'HealthMeds', 'healthmeds@gmail.org', 45789654, 'passwordxyz', 'Pending'),
-(9, 'Pharmaco Inc.', 'pharmaco.inc@yahoo.net', 2147483647, 'passwordxyz', 'Pending');
+(9, 'Pharmaco Inc.', 'pharmaco.inc@yahoo.net', 2147483647, 'passwordxyz', 'Pending'),
+(10, 'Strathmore University', 'arnold.oketch@strathmore.edu', 705378979, '123123', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,6 @@ INSERT INTO `doctors` (`Doctor_SSN`, `Doctor_Name`, `Doctor_Phone`, `Doctor_Spec
 (45, 'Dr. Jessica', 1112223333, 'Gastroenterology', 7, 'password8', 'active'),
 (46, 'Dr. Andrew', 147483647, 'Psychiatry', 9, 'password9', 'active'),
 (47, 'Dr. James', 12103923, 'Family Medicine', 12, 'password10', 'active'),
-(86585, 'Arnold', 254, 'Cardiology', 2023, '12345', 'active');
 
 -- --------------------------------------------------------
 
@@ -147,8 +147,8 @@ INSERT INTO `doctors` (`Doctor_SSN`, `Doctor_Name`, `Doctor_Phone`, `Doctor_Spec
 --
 
 CREATE TABLE `doctor_patient` (
-  `Doctor_SSN` int(11) NOT NULL,
-  `Patient_SSN` int(11) NOT NULL
+  `Doctor_SSN` int(10) NOT NULL,
+  `Patient_SSN` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -183,6 +183,8 @@ CREATE TABLE `drugs` (
   `Drug_ID` int(10) NOT NULL,
   `Drug_Name` varchar(50) NOT NULL,
   `Drug_Description` varchar(200) DEFAULT NULL,
+  `Drug_Category` varchar(100) NOT NULL,
+  `Drug_Image` longblob,
   `Drug_Quantity` int(4) NOT NULL,
   `Drug_Expiration_Date` date DEFAULT NULL,
   `Drug_Manufacturing_Date` date DEFAULT NULL,
@@ -193,22 +195,79 @@ CREATE TABLE `drugs` (
 -- Dumping data for table `drugs`
 --
 
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) VALUES
-(1, 'Paracetamol', 'Fever reducer', 311, '2023-11-30', '2023-03-01', 5),
-(2, 'Metformin', 'Diabetes medication', 60, '2024-04-30', '2023-10-01', 5),
-(3, 'Aspirin', 'Pain reliever', 150, '2023-12-31', '2023-01-01', 2),
-(4, 'Simvastatin', 'Cholesterol medication', 25, '2024-03-31', '2023-07-15', 2),
-(5, 'Metoprolol', 'Beta blocker', 50, '2024-01-31', '2023-06-15', 2),
-(6, 'Warfarin', 'Blood thinner', 20, '2024-04-30', '2023-10-01', 2),
-(7, 'Loratadine', 'Antihistamine', 200, '2023-12-31', '2023-01-01', 2),
-(8, 'Citalopram', 'Antidepressant', 30, '2024-03-31', '2023-07-15', 2),
-(9, 'Aspirin', 'Pain reliever and fever reducer', 80, '2023-10-31', '2022-07-20', 6),
-(10, 'Cetirizine', 'Antihistamine for allergies', 120, '2023-09-30', '2022-05-10', 6),
-(11, 'drug1', 'testing drug', 10, '2023-07-24', '2023-07-22', 6),
-(12, 'drug2', 'testing drug', 10, '2023-07-24', '2023-07-22', 1),
-(13, 'drug405', 'testing drug', 10, '2023-07-24', '2023-07-22', 1),
-(15, 'drug404', 'tester', 100, '2023-08-05', '2023-07-27', 2),
-(16, '', '', 0, '0000-00-00', '0000-00-00', 6);
+-- Inserting 50 sample drugs into the drugs table
+
+-- Analgesics
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(1, 'Aspirin', 'Pain reliever and fever reducer', 'Analgesic', 100, '2024-12-31', '2022-01-15', 'ABC Pharmaceuticals'),
+(2, 'Ibuprofen', 'Nonsteroidal anti-inflammatory drug', 'Analgesic', 75, '2024-11-30', '2022-03-10', 'PharmaCare'),
+(3, 'Acetaminophen', 'Commonly used for pain and fever', 'Analgesic', 90, '2024-10-31', '2022-02-20', 'MediWell Pharmaceuticals'),
+(4, 'Naproxen', 'Pain relief and anti-inflammatory', 'Analgesic', 60, '2024-09-30', '2022-05-25', 'HealthGuard Labs'),
+(5, 'Codeine', 'Prescription pain medication', 'Analgesic', 30, '2024-08-31', '2022-04-15', 'MediCo Health');
+
+-- Antibiotics
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(6, 'Amoxicillin', 'Antibiotic used to treat bacterial infections', 'Antibiotic', 50, '2023-09-30', '2021-05-20', 'XYZ Pharma'),
+(7, 'Ciprofloxacin', 'Broad-spectrum antibiotic', 'Antibiotic', 40, '2023-07-31', '2021-06-05', 'MediCure Pharmaceuticals'),
+(8, 'Azithromycin', 'Used for respiratory and skin infections', 'Antibiotic', 65, '2023-06-30', '2021-08-10', 'PharmaStat Solutions'),
+(9, 'Doxycycline', 'Effective against various infections', 'Antibiotic', 80, '2023-05-31', '2021-07-15', 'LifeMed Labs'),
+(10, 'Penicillin', 'First antibiotic discovered', 'Antibiotic', 55, '2023-04-30', '2021-09-20', 'HealthyMeds Inc.');
+
+-- Antihypertensives
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(11, 'Lisinopril', 'Blood pressure medication', 'Antihypertensive', 75, '2023-11-30', '2020-12-10', 'MediCo Health'),
+(12, 'Amlodipine', 'Used to treat high blood pressure', 'Antihypertensive', 70, '2023-10-31', '2020-11-05', 'PharmaLife'),
+(13, 'Losartan', 'Angiotensin receptor blocker', 'Antihypertensive', 60, '2023-08-31', '2020-10-15', 'HealthWise Pharmaceuticals'),
+(14, 'Hydrochlorothiazide', 'Diuretic and antihypertensive', 'Antihypertensive', 85, '2023-07-31', '2020-09-20', 'MediWell Pharmaceuticals'),
+(15, 'Metoprolol', 'Beta-blocker for high blood pressure', 'Antihypertensive', 95, '2023-06-30', '2020-08-25', 'HeartGuard Inc.');
+
+-- Antilipidemics
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(16, 'Atorvastatin', 'Cholesterol-lowering medication', 'Antilipidemic', 60, '2023-08-31', '2021-03-05', 'PharmaStat Solutions'),
+(17, 'Simvastatin', 'HMG-CoA reductase inhibitor', 'Antilipidemic', 55, '2023-07-31', '2021-04-10', 'LifeMed Labs'),
+(18, 'Ezetimibe', 'Lowers cholesterol absorption', 'Antilipidemic', 45, '2023-06-30', '2021-02-15', 'MediCure Pharmaceuticals'),
+(19, 'Fenofibrate', 'Reduces triglycerides and cholesterol', 'Antilipidemic', 75, '2023-05-31', '2021-01-20', 'HealthGuard Labs'),
+(20, 'Rosuvastatin', 'Statins for cholesterol control', 'Antilipidemic', 70, '2023-04-30', '2021-06-25', 'PharmaCare');
+
+-- Antidepressants
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(21, 'Sertraline', 'Selective serotonin reuptake inhibitor', 'Antidepressant', 80, '2023-10-31', '2021-07-15', 'MediWell Pharmaceuticals'),
+(22, 'Fluoxetine', 'Used to treat depression and anxiety', 'Antidepressant', 90, '2023-09-30', '2021-09-05', 'HealthyMeds Inc.'),
+(23, 'Escitalopram', 'SSRI for mood disorders', 'Antidepressant', 70, '2023-08-31', '2021-08-20', 'MediCure Pharmaceuticals'),
+(24, 'Bupropion', 'Atypical antidepressant', 'Antidepressant', 60, '2023-07-31', '2021-08-05', 'PharmaLife'),
+(25, 'Venlafaxine', 'Serotonin-norepinephrine reuptake inhibitor', 'Antidepressant', 50, '2023-06-30', '2021-07-25', 'PharmaStat Solutions');
+
+-- Antidiabetics
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(26, 'Metformin', 'Oral medication for type 2 diabetes', 'Antidiabetic', 100, '2023-12-31', '2020-11-15', 'ABC Pharmaceuticals'),
+(27, 'Insulin Glargine', 'Long-acting insulin', 'Antidiabetic', 85, '2023-11-30', '2020-10-10', 'PharmaLife'),
+(28, 'Sitagliptin', 'Dipeptidyl peptidase-4 inhibitor', 'Antidiabetic', 70, '2023-10-31', '2020-09-05', 'HealthWise Pharmaceuticals'),
+(29, 'Gliclazide', 'Sulfonylurea for diabetes', 'Antidiabetic', 75, '2023-09-30', '2020-08-20', 'MediCure Pharmaceuticals'),
+(30, 'Empagliflozin', 'SGLT2 inhibitor', 'Antidiabetic', 65, '2023-08-31', '2020-07-25', 'PharmaCare');
+
+-- Antihistamines
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(31, 'Cetirizine', 'Second-generation antihistamine', 'Antihistamine', 120, '2024-10-31', '2022-06-12', 'MediWell Pharmaceuticals'),
+(32, 'Diphenhydramine', 'Commonly used for allergies', 'Antihistamine', 100, '2024-09-30', '2022-04-25', 'ABC Pharmaceuticals'),
+(33, 'Loratadine', 'Non-drowsy allergy relief', 'Antihistamine', 80, '2024-08-31', '2022-03-20', 'PharmaStat Solutions'),
+(34, 'Fexofenadine', 'Effective against hay fever', 'Antihistamine', 60, '2024-07-31', '2022-02-15', 'HealthGuard Labs'),
+(35, 'Desloratadine', 'Long-lasting allergy relief', 'Antihistamine', 40, '2024-06-30', '2022-01-10', 'MediCo Health');
+
+-- Antipsychotics
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
+VALUES 
+(36, 'Aripiprazole', 'Atypical antipsychotic', 'Antipsychotic', 70, '2023-12-31', '2020-12-15', 'MediCo Health'),
+(37, 'Risperidone', 'Used to treat schizophrenia', 'Antipsychotic', 65, '2023-11-30', '2020-11-10', 'PharmaLife'),
+(38, 'Olanzapine', 'Second-generation antipsychotic', 'Antipsychotic', 75, '2023-10-31', '2020-10-05', 'HealthWise Pharmaceuticals'),
+(39, 'Quetiapine', 'For bipolar disorder and schizophrenia', 'Antipsychotic', 85, '2023-09-30', '2020-09-20', 'MediCure Pharmaceuticals'),
+(40, 'Haloperidol', 'Typical antipsychotic', 'Antipsychotic', 95, '2023-08-31', '2020-08-15', 'HeartGuard Inc.');
 
 -- --------------------------------------------------------
 
@@ -238,7 +297,7 @@ INSERT INTO `drug_prices` (`id`, `Drug_ID`, `Pharmacy_ID`, `Drug_Price`) VALUES
 (52, 10, 2, 9.50),
 (53, 3, 6, 69.69),
 (55, 4, 6, 69.00),
-(57, 13, 6, 69.69);
+(57, 13, 6, 69.00);
 
 -- --------------------------------------------------------
 
@@ -257,7 +316,6 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`Order_ID`, `Patient_SSN`, `Drug_ID`) VALUES
-(2, 24, 2),
 (3, 25, 3),
 (5, 151097, 7),
 (8, 151097, 2),
@@ -265,7 +323,8 @@ INSERT INTO `orders` (`Order_ID`, `Patient_SSN`, `Drug_ID`) VALUES
 (11, 123, 1),
 (13, 151097, 5),
 (14, 1, 7),
-(15, 1, 7);
+(15, 1, 7),
+(16, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -291,8 +350,9 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`Patient_SSN`, `Patient_Name`, `Patient_Address`, `Patient_Email`, `Patient_Phone`, `Patient_Gender`, `Patient_DOB`, `Patient_Age`, `Password`, `Status`) VALUES
-(1, 'patient1', 'Manhattan', 'patient1@gmail.com', 2147483647, 'Male', '2015-07-08', 8, '11111', 'Pending'),
+(1, 'patient1', 'Manhattan', 'patient1@gmail.com', 2147483647, 'Male', '2015-07-08', 8, '11111', 'active'),
 (2, 'patient2', 'Manhattan', 'patient2@gmail.com', 22222222, 'Female', '2010-06-08', 13, '22222', 'active'),
+(11, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2023-08-30', 0, '123', 'active'),
 (23, 'Jane', '456 Elm St', 'janesmith@yahoo.com', 2147483647, 'Female', '1992-05-10', 31, 'password1', 'Active'),
 (24, 'John', '789 Oak St', 'johnsmith@gmail.com', 2147483647, 'Male', '1990-09-15', 33, 'password2', 'Pending'),
 (25, 'Sarah', '123 Maple Ave', 'sarahjones@hotmail.com', 2147483647, 'Female', '1985-12-03', 38, 'password3', 'Pending'),
@@ -310,9 +370,15 @@ INSERT INTO `patients` (`Patient_SSN`, `Patient_Name`, `Patient_Address`, `Patie
 (37, 'Ava', '987 Spruce St', 'avadavis@gmail.com', 2147483647, 'Female', '1995-03-20', 27, 'password15', 'active'),
 (38, 'Emma', '345 Elm St', 'emmamartin@hotmail.com', 2147483647, 'Female', '1993-12-25', 28, 'password16', 'active'),
 (123, 'patient1', 'Ole Sangale Road, Madaraka Estate', 'patient1@gmail.com', 123456789, 'Male', '1998-02-03', 25, '123456789', 'active'),
+(6666, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2023-08-31', 0, '123', 'active'),
 (12345, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2005-02-08', 18, 'mypassword@123', 'active'),
+(22222, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2023-09-02', 0, '22222', 'active'),
 (56789, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Female', '2023-03-09', 0, 'aaaaa', 'active'),
-(151097, 'Conslata Barasa', 'Qwetu Hostels', 'conslata.barasa@strathmore.edu', 705378979, 'Female', '2003-04-05', 20, 'deez', 'active');
+(151097, 'Conslata Barasa', 'Qwetu Hostels', 'conslata.barasa@strathmore.edu', 705378979, 'Female', '2003-04-05', 20, 'deez', 'active'),
+(444444, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2019-01-29', 4, '1212', 'active'),
+(5555555, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2022-06-07', 1, '1212', 'active'),
+(5555556, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2022-06-07', 1, '1212', 'active'),
+(44545445, 'Arnold Oguda', 'Ole Sangale Road, Madaraka Estate', 'arnold.oketch@strathmore.edu', 705378979, 'Male', '2023-07-19', 0, '1212', 'active');
 
 -- --------------------------------------------------------
 
@@ -335,14 +401,16 @@ CREATE TABLE `pharmacy` (
 --
 
 INSERT INTO `pharmacy` (`Pharmacy_ID`, `Pharmacy_Name`, `Pharmacy_Email`, `Pharmacy_Phone`, `Pharmacy_Address`, `Password`, `Status`) VALUES
-(1, 'ABC Pharmacy', 'abcpharmacy@gmail.com', 1234567890, '123 Main St', 'password123', 'Pending'),
+(1, 'ABC Pharmacy', 'abcpharmacy@gmail.com', 1234567890, '123 Main St', 'password123', 'Active'),
 (2, 'XYZ Pharmacy', 'xyzpharmacy@gmail.com', 2147483647, '456 Elm St', 'password456', 'Pending'),
 (3, 'EFG Pharmacy', 'efgpharmacy@gmail.com', 1112223333, '789 Oak St', 'password789', 'active'),
 (4, 'LMN Pharmacy', 'lmnpharmacy@gmail.com', 2147483647, '321 Pine St', 'passwordabc', 'active'),
 (5, 'PQR Pharmacy', 'pqrpharmacy@gmail.com', 2147483647, '654 Walnut Dr', 'passwordxyz', 'active'),
 (6, 'Arnold Oguda', 'arnold.oketch@strathmore.edu', 705378979, 'Ole Sangale Road, Madaraka Estate', '123', 'active'),
 (7, 'Arnold Oguda', 'arnold.oketch@strathmore.edu', 705378979, 'Ole Sangale Road, Madaraka Estate', '12345', 'Pending'),
-(9, 'Pharmacist1', 'Pharmacist1@gmail.com', 11111111, 'Manhattan', '11111', 'active');
+(9, 'Pharmacist1', 'Pharmacist1@gmail.com', 11111111, 'Manhattan', '11111', 'active'),
+(10, 'Arnold Oguda', 'arnold.oketch@strathmore.edu', 705378979, 'Ole Sangale Road, Madaraka Estate', '123123', 'Pending'),
+(11, 'Arnold Oguda', 'arnold.oketch@strathmore.edu', 705378979, 'Ole Sangale Road, Madaraka Estate', '123', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -368,7 +436,7 @@ CREATE TABLE `prescriptions` (
 INSERT INTO `prescriptions` (`Prescription_ID`, `Patient_SSN`, `Doctor_SSN`, `Drug_ID`, `Prescription_Amount`, `Prescription_Dosage`, `Prescription_Instructions`, `Prescribed`) VALUES
 (1, 23, 24, 1, '100 mg', '2 times daily', 'Take with water', 'N'),
 (2, 23, 25, 2, '500 mg', '1 time daily', 'Take with food', 'N'),
-(3, 23, 26, 3, '75 mg', '1 time daily', 'Take after meals', 'N'),
+(3, 23, 26, 3, '75 mg', '1 time daily', 'Take after meals', 'Y'),
 (4, 23, 27, 4, '20 mg', '1 time daily', 'Take in the evening', 'N'),
 (5, 23, 42, 5, '50 mg', '2 times daily', 'Take with or without food', 'N'),
 (6, 23, 24, 6, '5 mg', '1 time daily', 'Take at the same time each day', 'N'),
@@ -528,7 +596,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `Company_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Company_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contracts`
@@ -540,7 +608,7 @@ ALTER TABLE `contracts`
 -- AUTO_INCREMENT for table `drugs`
 --
 ALTER TABLE `drugs`
-  MODIFY `Drug_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Drug_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `drug_prices`
@@ -552,13 +620,13 @@ ALTER TABLE `drug_prices`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pharmacy`
 --
 ALTER TABLE `pharmacy`
-  MODIFY `Pharmacy_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Pharmacy_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `prescriptions`

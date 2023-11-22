@@ -13,6 +13,20 @@
             "database": "dailyPharma",
             "username": "root",
             "password": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "conn1",
+            "database": "dailypharma2",
+            "username": "root",
+            "password": ""
         }
     ],
     "liveServer.settings.port": 5501

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Get the selected companyID, pharmacyID, and supervisorID from the POST data
     $companyID = $_POST["companyID"];
-    $pharmacyID = $_SESSION["user"]["Pharmacy_ID"];
+    $pharmacyID = $_SESSION["userid"];
     $supervisorID = $_POST["supervisorID"];
 
 

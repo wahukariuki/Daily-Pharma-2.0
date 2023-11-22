@@ -16,8 +16,8 @@
                 </div>
             </div>
             <div class="arrow-buttons">
-                <div class="arrow-left"><i class="uil uil-angle-left-b"></i></div>
-                <div class="arrow-right"><i class="uil uil-angle-right-b"></i></div>
+                <div class="arrow-left"><span class="material-symbols-outlined uil">arrow_back_ios_new</span></div>
+                <div class="arrow-right"><span class="material-symbols-outlined uil">arrow_forward_ios</span></div>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
 
         <div class="main_content">
 
-            <div class="category-content" id="Manage-Patients">
+            <div class="category-content active" id="Manage-Patients">
                 <div class="container my-5">
                     <h2>List of Patients</h2>            
                     <br>

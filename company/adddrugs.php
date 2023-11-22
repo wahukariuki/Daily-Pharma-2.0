@@ -1,6 +1,5 @@
 <?php
-
-include "../inc/session_header.php";
+include "../inc/view_header.php";
 
 $drug_name  = "";
 $drug_company = "";
@@ -51,21 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     } while (false);
 }
+
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-COMPLATIBLE" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
-    <title>Company View - Add New Drug</title>
-    <link rel="stylesheet" href="../bootstrap.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
+<br><br><br>
+
     <div class="container my-5">
+    <button class="btn-login-popup" onclick="window.location.href='companyView.php'">BACK</button>
+    <br><br>
         <h2>New Drug</h2>
 
         <?php
@@ -113,14 +105,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label class="col-sm-3 col-form-label">Drug Category</label>
             <div class="col-sm-6">
                     <select name="category" id="category">
-                        <option value="antibiotic">Antibiotic</option>
-                        <option value="Antifungal">Antifungal drugs</option>
-                        <option value="Pain reliever">Pain relievers</option>
-                        <option value="Immunosuppressants">Immunosupressants</option>
-                        <option value="Antiparasitic">Antiparasitic </option>
-                        <option value="Immunotherapy">Immunotherapy</option>
+<?php  
+$sql="SELECT DISTINCT Drug_Category FROM drugs";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // print_r ($row);
+        foreach ($row as $key => $value) {?>
+            <option value=<?php echo $value?>><?php echo $value?></option>
+        <?php
+        }
+    } 
+}      
+?>
                     </select>
-                </div>
+            </div>
                
             </div><br>
             <div class="row mb-3">

@@ -2,17 +2,13 @@
 include '../inc/view_header.php';
 include '../patients/connect.php';
 if(isset($_GET["Drug_ID"])){
-    $Drug_ID=$_GET["Drug_ID"];
-    $sql="SELECT * FROM drugs WHERE Drug_ID= ? ";
-    $stmt=$conn->prepare($sql);
-    if($stmt){
+    $Drug_ID = intval($_GET["Drug_ID"]);
 
-        $stmt->bind_param("i",$Drug_ID);
-        $stmt->execute();
-       $result= $stmt->get_result();
-        if($result->num_rows>0){
-            $row = $result->fetch_assoc();
-          $pageTitle=$row['Drug_Name'];
+    $sql= "SELECT * FROM drugs WHERE Drug_ID = '$Drug_ID' ";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $pageTitle=$row['Drug_Name'];
 
           echo '
           <style>
@@ -82,18 +78,17 @@ if(isset($_GET["Drug_ID"])){
           echo '<tr> <th>  Drug category:</th><td>'.$row['Drug_Category'].'</td></tr></table>';          
           echo '</div>';
         
-    echo '</div>';
-} else {
+        echo '</div>';
+      }
+
+}else {
     echo "No drug found with the provided ID.";
 }
+
 } else {
 echo "Error in preparing the extracting drug data.";
 }
 
 // Close the database connection
-$stmt->close();
 $conn->close();
-    
-    
-}
 ?>

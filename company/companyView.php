@@ -3,6 +3,25 @@ include "../inc/view_header.php";
 include "../functions.php";
 ?>
 
+<style>
+    .drug{
+        list-style: decimal;
+        font-size: 18px;
+        letter-spacing: 1px;
+        margin: 10px;
+    }
+
+    .drug a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .drug a:hover{
+        text-decoration: underline;
+        color: black;
+    }
+</style>
+
     <!-- Above fold -->
     <div class="image-container" id="about">
         <div class="Overlay-image">
@@ -19,8 +38,8 @@ include "../functions.php";
                 </div>
             </div>
             <div class="arrow-buttons">
-                <div class="arrow-left"><i class="uil uil-angle-left-b"></i></div>
-                <div class="arrow-right"><i class="uil uil-angle-right-b"></i></div>
+                <div class="arrow-left"><span class="material-symbols-outlined uil">arrow_back_ios_new</span></div>
+                <div class="arrow-right"><span class="material-symbols-outlined uil">arrow_forward_ios</span></div>
             </div>
         </div>
     </div>
@@ -142,7 +161,7 @@ include "../functions.php";
                                     echo "<td>" . $row["End_Date"] . "</td>";
                                     echo "<td>" . $row["Status"] . "</td>";
                                     echo "<td>";
-                                    if ($row["Status"] == 'Active' || 'active' || 'ACTIVE') {
+                                    if ($row["Status"] == 'Active' ||$row["Status"] == 'active' || $row["Status"] ==  'ACTIVE') {
                                         echo "<a class='btn btn-danger btn-sm' href='terminate_contract.php?contractID=" . $row["Contract_ID"] . " &email= + " . $row["Supervisor_Email"] ."'>Terminate</a>";
                                     }
                                     echo "</td>";
@@ -159,15 +178,24 @@ include "../functions.php";
                 <div class="container my-5">
                     <div class="categories">
         <h1>Select a category</h1>
+        
         <ul>
-        <?php $section = isset($_GET['cat']) ? $_GET['cat'] : null; ?>
-
-            <li class="antibiotics" <?php if($section=="antibiotics"){echo "on";}?>><a href="viewDrugs.php?cat=antibiotics">Antibiotics</a></li>
-            <li class="painrelievers"<?php if($section=="painrelievers"){echo "on";}?>><a href="viewDrugs.php?cat=painrelievers">Pain relievers</a></li>
-            <li class="antifungal" <?php if($section=="antifungal"){echo "on";}?>><a href="viewDrugs.php?cat=antifungal">Antifungal</a></li>
-            <li class="immunotherapy" <?php if($section=="immunotherapy"){echo "on";}?>><a href="viewDrugs.php?cat=immunotherapy">Immunotherapy</a></li>
-            <li class="immunosuppressants" <?php if($section=="immunosuppressants"){echo "on";}?>><a href="viewDrugs.php?cat=immunosuppressants">Immunosuppressants</a></li>
-            <li class="antiparasitic" <?php if($section=="antiparasitic"){echo "on";}?>><a href="viewDrugs.php?cat=antiparasitic">AntiParasitic</a></li>
+        <?php 
+        $section = isset($_GET['cat']) ? $_GET['cat'] : null;
+        
+        $sql="SELECT DISTINCT Drug_Category FROM drugs";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                // print_r ($row);
+                foreach ($row as $key => $value) {
+                    echo '
+                    <li class="drug '.$value.'" <?php if($section=="'.$value.'"){echo "on";}?><a href="viewDrugs.php?cat='.$value.'">'.$value.'</a></li>
+                    ';
+                }
+            } 
+        }
+        ?>
         </ul>
     </div>
                 </div>

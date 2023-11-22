@@ -79,6 +79,9 @@ $age = $row["Patient_Age"];
     <div class= "container my-5">
         <h2>Patient Information</h2>
         <div class="item"></div>
+        <button class="btn-login-popup" onclick="window.location.href='patients/patientView.php'">BACK</button>
+        <br><br><br>          
+
         <form method ="post">
         <div class="row mb-3">
                 <label class="col-sm-3 col-form label">SSN</label>
@@ -192,6 +195,8 @@ $exp = $row["Doctor_Experience"];
     <div class= "container my-5">
         <h2>Doctor Information</h2>
         <div class="item"></div>
+        <button class="btn-login-popup" onclick="window.location.href='doctors/doctorView.php'">BACK</button>
+        <br><br><br>  
         <form method ="post">
         <div class="row mb-3">
                 <label class="col-sm-3 col-form label">SSN</label>
@@ -290,6 +295,8 @@ $address = $row["Pharmacy_Address"];
     <div class= "container my-5">
         <h2>Pharmacy Information</h2>
         <div class="item"></div>
+        <button class="btn-login-popup" onclick="window.location.href='pharmacy/pharmacyView.php'">BACK</button>
+        <br><br><br>  
         <form method ="post">
         <div class="row mb-3">
                 <label class="col-sm-3 col-form label">ID</label>
@@ -386,6 +393,8 @@ $phone = $row["Company_Phone"];
     <div class= "container my-5">
         <h2>Company Information</h2>
         <div class="item"></div>
+        <button class="btn-login-popup" onclick="window.location.href='company/companyView.php'">BACK</button>
+        <br><br><br>  
 
         <form method ="post">
             <div class="row mb-3">

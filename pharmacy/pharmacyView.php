@@ -26,8 +26,8 @@ include "../inc/view_header.php";
                 </div>
             </div>
             <div class="arrow-buttons">
-                <div class="arrow-left"><i class="uil uil-angle-left-b"></i></div>
-                <div class="arrow-right"><i class="uil uil-angle-right-b"></i></div>
+                <div class="arrow-left"><span class="material-symbols-outlined uil">arrow_back_ios_new</span></div>
+                <div class="arrow-right"><span class="material-symbols-outlined uil">arrow_forward_ios</span></div>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@ include "../inc/view_header.php";
 
         <div class="main_content">
 
-            <div class="category-content" id="Manage-Drugs">
+            <div class="category-content active" id="Manage-Drugs">
                 <div class="container my-5">
                     <h2>List of Drugs</h2>            
                     <br>
@@ -83,7 +83,7 @@ include "../inc/view_header.php";
                                 FROM drug_prices dp
                                 INNER JOIN drugs d ON d.Drug_ID = dp.Drug_ID
                                 INNER JOIN pharmacy p ON p.Pharmacy_ID = dp.Pharmacy_ID
-                                WHERE p.Pharmacy_ID = '$ID'
+                                WHERE p.Pharmacy_ID = '$ID' ORDER BY  Drug_ID ASC
                                 ;";
                                  
                                 $result = $conn->query($sql);
@@ -153,7 +153,7 @@ include "../inc/view_header.php";
                                     echo "<td>" . $row["End_Date"] . "</td>";
                                     echo "<td>" . $row["Status"] . "</td>";
                                     echo "<td>";
-                                    if ($row["Status"] == 'active') {
+                                    if ($row["Status"] == 'active' || $row["Status"] == 'Active' ) {
                                         echo "<a class='btn btn-danger btn-sm' href='terminate_contract.php?contractID=" . $row["Contract_ID"] . " &email= + " . $row["Supervisor_Email"] ."'>Terminate</a>";
                                     }
                                     echo "</td>";
@@ -172,7 +172,7 @@ include "../inc/view_header.php";
                         <form method="GET" action="search_prescription.php">
                             <div class="search-container">
                                 <label for="patient_ssn">Search Prescription by Patient SSN:</label>
-                                <input type="text" id="patient_ssn" name="patient_ssn" required>
+                                <input type="search" id="patient_ssn" name="patient_ssn" required>
                                 <input type="submit" value="Search">
                             </div>
                         </form>

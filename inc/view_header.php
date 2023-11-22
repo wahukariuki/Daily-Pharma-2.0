@@ -23,7 +23,9 @@ $username = $_SESSION["username"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../bootstrap.css">
     <link rel="stylesheet" href="../style.css">
     <title> DailyPharma - <?php echo $user?> Home</title>
@@ -47,7 +49,7 @@ $username = $_SESSION["username"];
             <?php
                 echo '<div class="profile">';
                 echo '<a href="../profile.php">';
-                echo '<i class="uil uil-user"></i>' . $username . '';
+                echo '<span class="material-symbols-outlined uil">person</span>' . $username . '';
                 echo '</a>';
                 echo '</div>';
             ?>

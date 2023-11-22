@@ -13,7 +13,7 @@ if (isset($_GET["id"])) {
         // Prompt the user for confirmation before deleting the patient
         echo "<script>
             if (confirm('Are you sure you want to delete this patient?')) {
-                let doctorID = " . $_SESSION["user"]["Doctor_SSN"] . ";
+                let doctorID = " . $_SESSION["userid"] . ";
                 window.location.href = 'delete_patient.php?id=' + doctorID + '&patientID=' + " . $patientID . ";
             } else {
                 // If the user cancels, redirect back to the doctor's view page without performing the deletion

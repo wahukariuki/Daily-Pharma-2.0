@@ -21,8 +21,8 @@
                 </div>
             </div>
             <div class="arrow-buttons">
-                <div class="arrow-left"><i class="uil uil-angle-left-b"></i></div>
-                <div class="arrow-right"><i class="uil uil-angle-right-b"></i></div>
+                <div class="arrow-left"><span class="material-symbols-outlined uil">arrow_back_ios_new</span></div>
+                <div class="arrow-right"><span class="material-symbols-outlined uil">arrow_forward_ios</span></div>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@ while ($row = $query->fetch_assoc()) {
 $drugInformation[] = $row;
 }
 
-            ?>
+?>
 
             <div class="select-container">
                 <label for="availableDrugs">Available Drugs</label>
@@ -215,15 +215,14 @@ $drugInformation[] = $row;
                 //convert from php array to js array
                 const drug = <?php echo json_encode($drugInformation); ?>;
                 const selectedDrugID = drug.find((item) => item.Drug_ID === selectedDrug);
-                
-                fetch("store_selected_drug.php", {
-                    method: "POST",
-                    body: JSON.stringify({ selectedDrug }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.message);
-                });
+                // fetch("store_selected_drug.php", {
+                //     method: "POST",
+                //     body: JSON.stringify({ selectedDrug }),
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     console.log(data.message);
+                // });
                 if (selectedDrugID) {
                     drugNameParagraph.textContent = "Drug Name: " + selectedDrugID.Drug_Name;
                     drugPriceParagraph.textContent = "Price: " + selectedDrugID.Drug_Price;
