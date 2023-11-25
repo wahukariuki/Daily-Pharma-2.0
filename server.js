@@ -29,6 +29,7 @@ app.listen(3000 , ()=>{
     console.log("API up and running")
 })
 
+//Beginning to add the databse
 app.get('/users', authenticateToken ,(req,res)=>{
     res.json(users.filter(user => user.name == req.user.name ))
 })
