@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+*{
+    margin: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+body{
+    background-color: rgba(0, 0, 0, 0.895);
+    color: white;
+}
+
+header{
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 50px;
+    background: transparent;
+    text-align: center;
+}
+
+.logo{
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.logo a{
+    text-decoration: none;
+    color: #019587;
+    font-size: 2em;
+}
+
+hr{
+    background: #019587;
+    height: 3px;
+    border: 0;
+    padding: 0;
+    margin: 15px auto;
+    width: 50%;
+}
+
+button{
+    margin: 0 10px;
+    padding: 15px 20px ;
+    background-color:#019587;
+    border: none;
+    border-radius: 5px;
+    transition: .5s ease;
+}
+
+button:hover{
+    background-color:#25dcc9;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+input{
+    width: 300px;
+    height: 70px;
+    font-size: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+input:focus{
+    outline: 2px solid #25dcc9;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+}
+legend{
+    width: 500px;
+    border: 2px dashed white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

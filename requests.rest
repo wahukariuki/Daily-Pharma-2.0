@@ -1,0 +1,114 @@
+GET http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Kyle",
+    "password": "password"
+}
+
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "name": "Kyle",
+    "password": "password"
+}
+
+###
+//Testing patient routes
+GET http://localhost:3000/patients/ssn/2
+
+###
+GET http://localhost:3000/patients/email/michaeldavis@gmail.com
+
+###
+GET http://localhost:3000/patients/gender/Female
+
+###
+GET http://localhost:3000/patients/drug/3
+
+###
+GET http://localhost:3000/patients/drug/Acetaminophen
+
+###
+//Tesing Doctor routes
+GET http://localhost:3000/doctors
+
+###
+GET http://localhost:3000/doctors/ssn/1
+
+###
+GET http://localhost:3000/doctors/speciality/Cardiology
+
+###
+GET http://localhost:3000/doctors/experience/1
+
+###
+//Tesing Pharmacy routes
+GET http://localhost:3000/pharmacy
+
+###
+GET http://localhost:3000/pharmacy/id/1
+
+###
+GET http://localhost:3000/pharmacy/email/abcpharmacy@gmail.com
+
+###
+GET http://localhost:3000/pharmacy/address/Manhattan
+
+//Testing Routes for the company
+###
+GET http://localhost:3000/company
+
+###
+GET http://localhost:3000/company/id/1
+
+###
+GET http://localhost:3000/company/email/pqrpharma@gmail.com
+
+###
+GET http://localhost:3000/company/drugs-produced/0
+
+###
+//Test Routes for drugs
+GET http://localhost:3000/drugs
+
+###
+GET http://localhost:3000/drugs/id/35
+
+###
+GET http://localhost:3000/drugs/category/Antibiotic
+
+###
+GET http://localhost:3000/users
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name" : "Ads",
+    "password": "passiword"
+}
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "name" : "Ads",
+    "password": "passiword"
+}
+
+
+
+
+
+
+
