@@ -205,10 +205,33 @@ include "../functions.php";
             </div>
             <div class="category-content" id="Api_request">
                 <div class="container my-5">
-                    <button>Genearate api token</button>
+                    <div class="tokens">
+                        <h1>Token generation</h1>
+                    <button id="generateTokenBtn">Genearate api token</button>
+                    <div id="apiTokenResult"></div>
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+                    <script>
+                        $(document).ready(function() {
+                      $("#generateTokenBtn").on("click", function() {
+                        $.ajax({
+                        url: "/api/generateToken", 
+                        method: "POST",
+                        success: function(response) {
+                            $("#apiTokenResult").text(response.token);
+                        },
+                        error: function(error) {
+                            console.error("Error generating API token:", error);
+                        }
+                    });
+                             });
+                            });
+
+                       </script>
                     </div>
+                   </div>
     </div>
-    </div>
+    
 
 
 
