@@ -12,6 +12,7 @@ const connection = mysql2.createConnection({
 
 try {
     connection.connect()
+    
 } catch (e) {
     console.log("Connection to MySQL failed!")
     console.log(e)

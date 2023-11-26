@@ -105,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label class="col-sm-3 col-form-label">Drug Category</label>
             <div class="col-sm-6">
                     <select name="category" id="category">
+                        
 <?php  
 $sql="SELECT DISTINCT Drug_Category FROM drugs";
 $result = $conn->query($sql);
