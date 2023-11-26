@@ -7,11 +7,12 @@ $doctors="";
 $patients="";
 $pharmacies="";
 $company="";
+$drugs="";
 if($_SERVER['REQUEST_METHOD']=='GET'){
     
         if(!isset($_GET["ID_SSN"])){
             header("location:adminView");
-            exit
+            exit;
         
         if(!isset($_GET["User_type"])){
             header("location: adminView.php");
@@ -24,10 +25,10 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         $pharmacies=$_GET["Pharmacies"];
         $company=$_GET["company"];
 
-        $sql="SELECT * FROM api_access WHERE ID/SSN= 'ID_SSN' AND User_type='uset_type'"
+        $sql="SELECT * FROM api_access WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'"
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-        $sql2="UPDATE api_access SET Doctors='$doctors' AND Patients='$patients' AND Pharmacies='$pharmacies' AND Company='$company' WHERE ID/SSN= '$ID_SSN' AND User_type='$User_type'";
+        $sql2="UPDATE api_access SET `Doctors`='$doctors' AND `Patients`='$patients' AND `Pharmacies`='$pharmacies' AND `Company`='$company' WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
         if (!$row) {
             header("location: /adminView.php");
             exit();
@@ -39,7 +40,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         $pharmacies=$row["Pharmacies"];
         $company=$row["company"];
     }else{
-        $ID_SSN=$_POST["ID/SSN"]
+        $ID_SSN=$_POST["ID/SSN"];
     $User_type=$_POST["User_type"];
     $patients=$_POST["Patients"];
         $doctors=$_POST["doctors"];
@@ -48,9 +49,9 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
         if(empty($ID_SSN))||(empty($User_type)){
             $errorMessage = "Some of the files you left empty are required";
-                break;
+               // break;
         }
-        $sql="UPDATE api_access SET doctors='$doctors' AND patients='$patients' AND pharmacies='$pharmacies' AND company='$company' WHERE ID/SSN= '$ID_SSN' AND User_type='$User_type'";
+        $sql="UPDATE api_access SET `doctors`='$doctors' AND `patients`='$patients' AND `pharmacies`='$pharmacies' AND `company`='$company' WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
         $result = $conn->query($sql);
 
         if (!$result) {
@@ -92,7 +93,8 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         <div class="row mb-3">
         <label class="col-sm-3 col-form-label">ID/SSN</label>
                 <div class="col-sm-6">
-                <input type="text"class="form-control" name="ID/SSN" value="<?php echo $SSN; ?>" readonly>
+                <input type="text" class="form-control" name="ID/SSN" value="<?php echo $ID_SSN; ?>" readonly>
+
                 </div>
             </div>
             <div class="row mb-3">
@@ -104,31 +106,31 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">drugs</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="drugs" value="<?php echo $drugs ?>">
+                    <input type="text" class="form-control" name="drugs" <?php if ($drugs == '1') echo 'checked';?>value="1">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">doctors</label>
                 <div class="col-sm-6">
-                    <input type="checkbox" class="form-control" name="doctors" value="<?php echo $doctors; ?>">
+                    <input type="checkbox" class="form-control" name="doctors" <?php if ($doctors == '1') echo 'checked';?>value="1">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">patients</label>
                 <div class="col-sm-6">
-                    <input type="check-box" class="form-control" name="patients" value="<?php echo $patients; ?>">
+                    <input type="check-box" class="form-control" name="patients" <?php if ($patients == '1') echo 'checked';?>value="1">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">pharmacy</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="pharmacies" value="<?php echo $pharmacies; ?>">
+                    <input type="text" class="form-control" name="pharmacies" <?php if ($pharmacies== '1') echo 'checked';?>value="1">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">company</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="company" value="<?php echo $company; ?>">
+                    <input type="text" class="form-control" name="company" <?php if ($company == '1') echo 'checked';?>  value="1">
                 </div>
             </div>
             <?php

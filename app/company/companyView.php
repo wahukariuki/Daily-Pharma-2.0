@@ -60,6 +60,9 @@ include "../functions.php";
                 <li class="category-item active" data-category="Manage-Drugs">MANAGE DRUGS</li>
                 <li class="category-item" data-category="Manage-Contracts">MANAGE CONTRACTS</li>
                 <li class="category-item" data-category="View-Drugs">VIEW ALL DRUGS IN THE SYSTEM</li>
+                <li class="category-item" data-category="Api-details">API_DETAILS</li>
+
+                
             </ul>
         </div>
 
@@ -200,6 +203,12 @@ include "../functions.php";
     </div>
                 </div>
             </div>
+            <div class="category-content" id="Api_request">
+                <div class="container my-5">
+                    button
+
+
+
         </div> 
     </div>
     <script src="../overlay_script.js"></script>

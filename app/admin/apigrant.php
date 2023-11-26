@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     
         if(!isset($_GET["ID_SSN"])){
             header("location:adminView");
-            exit
+            exit;}
         
         if(!isset($_GET["User_type"])){
             header("location: adminView.php");
@@ -17,11 +17,11 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         $ID_SSN=$_GET["ID_SSN"];
         $User_type=$_GET["User_type"];
         $Resource=$_GET["resource_type"];
-        $sql="SELECT * FROM api_access_request WHERE ID/SSN= 'ID_SSN' AND User_type='uset_type'"
+        $sql="SELECT * FROM api_access_request WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
-        $sql2="UPDATE api_access SET Drugs='allowed' WHERE ID/SSN= '$ID_SSN' AND User_type='$User_type'";
+        $sql2="UPDATE api_access SET `Resouce_requested`='allowed' WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
         if (!$row) {
             header("location: /adminView.php");
             exit();
@@ -35,28 +35,28 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
     
 }else{
-    $ID_SSN=$_POST["ID/SSN"]
+    $ID_SSN=$_POST["ID/SSN"];
     $User_type=$_POST["User_type"];
 $Resource=$_POST["resource_type"];
 
 if(empty($ID_SSN))||(empty($User_type)||(empty($Resource))){
         $errorMessage = "All fields are required";
-            break;
+           // break;
     }
-    $sql="UPDATE api_access_request SET resource_type='$Resource' WHERE  ID/SSN= 'ID_SSN' AND User_type='uset_type'";
+    $sql="UPDATE api_access_request SET `Resource_requested`='$Resource' WHERE  `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
     $result = $conn->query($sql);
 
         if (!$result) {
             $errorMessage = "Invalid query: " . $conn->error;
-            break;
+           // break;
         }
 
         $successMessage = "API access granted updated correctly";
 
         header("location: apigrant.php");
         exit;
-    } while (false);
-}
+    } 
+
 
 ?>
 
@@ -92,7 +92,7 @@ if(empty($ID_SSN))||(empty($User_type)||(empty($Resource))){
     
                 <label class="col-sm-3 col-form-label">ID/SSN</label>
                 <div class="col-sm-6">
-                <input type="text"class="form-control" name="ID/SSN" value="<?php echo $SSN; ?>" readonly>
+                <input type="text"class="form-control" name="ID/SSN" value="<?php echo $ID_SSN; ?>" readonly>
                 </div>
             </div>
   
