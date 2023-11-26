@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
             $errorMessage = "Some of the files you left empty are required";
                // break;
         }
-        $sql="UPDATE api_access SET `doctors`='$doctors' AND `patients`='$patients' AND `pharmacies`='$pharmacies' AND `company`='$company' WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
+        $sql="UPDATE api_access SET `doctors`='$doctors',`patients`='$patients',`pharmacies`='$pharmacies',`company`='$company' WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
         $result = $conn->query($sql);
 
         if (!$result) {
@@ -89,7 +89,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
             ";  
         }
         ?>
-        <form action="apiedit.php" method="post">
+        <form action="apiedit.php" method="get">
         <div class="row mb-3">
         <label class="col-sm-3 col-form-label">ID/SSN</label>
                 <div class="col-sm-6">

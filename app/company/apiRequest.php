@@ -6,16 +6,16 @@ $User_type="company";
 $Resource_type="not_allowed";
 $Password="";
 
-$Password="";
+//$Password="";
 if($_SERVER['REQUEST_METHOD']=='GET'){
     
     if(!isset($_GET["ID"])){
         header("location:login.html");
-        exit
+        exit;
     }
     if(!isset($_GET["password"])){
         header("location:login.html");
-        exit
+        exit;
     }
 $ID=$_GET["ID"];
 $ID=$_GET["password"];
@@ -46,7 +46,8 @@ if (!$result3) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-COMPLATIBLE" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -66,21 +67,24 @@ if (!$result3) {
             ";
         }
         ?>
-        <form action="api_request.php" method="post">
+        <form action="api_request.php" method="get">
         <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">ID</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="ID" value="<?php echo ID; ?>" readonly>
+                    <input type="text" class="form-control" name="ID" value="<?php echo $ID; ?>" readonly>
                 </div>
                 <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Usertype</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="User_type" value="<?php echo $User_type; ?>readonly">
+                </div>
                 </div> 
+
                 <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">password</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="password" value="<?php echo $Password; ?>">
+                </div>
                 </div>
                 <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-grid">

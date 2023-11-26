@@ -60,7 +60,7 @@ include "../functions.php";
                 <li class="category-item active" data-category="Manage-Drugs">MANAGE DRUGS</li>
                 <li class="category-item" data-category="Manage-Contracts">MANAGE CONTRACTS</li>
                 <li class="category-item" data-category="View-Drugs">VIEW ALL DRUGS IN THE SYSTEM</li>
-                <li class="category-item" data-category="Api-details">API_DETAILS</li>
+                <li class="category-item" data-category="Api-details">API DETAILS</li>
 
                 
             </ul>
@@ -205,7 +205,10 @@ include "../functions.php";
             </div>
             <div class="category-content" id="Api_request">
                 <div class="container my-5">
-                    button
+                    <button>Genearate api token</button>
+                    </div>
+    </div>
+    </div>
 
 
 
