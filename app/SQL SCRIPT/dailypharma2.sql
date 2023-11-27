@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 10:56 AM
+-- Generation Time: Nov 27, 2023 at 08:16 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,6 +47,36 @@ INSERT INTO `admin` (`Admin_ID`, `Admin_Name`, `Password`, `Status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `api_access`
+--
+
+CREATE TABLE `api_access` (
+  `ID/SSN` int(11) NOT NULL,
+  `User_type` varchar(100) NOT NULL,
+  `Drugs` varchar(100) NOT NULL,
+  `Patients` varchar(100) NOT NULL,
+  `Doctors` varchar(100) NOT NULL,
+  `Pharmacies` varchar(100) NOT NULL,
+  `Company` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `token` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `api_access_request`
+--
+
+CREATE TABLE `api_access_request` (
+  `ID/SSN` int(11) NOT NULL,
+  `User_type` varchar(100) NOT NULL,
+  `Resouce_requested` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `company`
 --
 
@@ -73,7 +103,8 @@ INSERT INTO `company` (`Company_ID`, `Company_Name`, `Company_Email`, `Company_P
 (7, 'Pharmagen', 'pharmagen@med.com', 9876543, 'passwordxyz', 'Pending'),
 (8, 'HealthMeds', 'healthmeds@gmail.org', 45789654, 'passwordxyz', 'Pending'),
 (9, 'Pharmaco Inc.', 'pharmaco.inc@yahoo.net', 2147483647, 'passwordxyz', 'Pending'),
-(10, 'Strathmore University', 'arnold.oketch@strathmore.edu', 705378979, '123123', 'Pending');
+(10, 'Strathmore University', 'arnold.oketch@strathmore.edu', 705378979, '123123', 'Pending'),
+(11, 'Pfizer', 'torienmwaura@gmail.com', 793467875, '12345', 'active');
 
 -- --------------------------------------------------------
 
@@ -138,40 +169,7 @@ INSERT INTO `doctors` (`Doctor_SSN`, `Doctor_Name`, `Doctor_Phone`, `Doctor_Spec
 (44, 'Dr. Daniel', 1112223333, 'Cardiology', 15, 'password7', 'active'),
 (45, 'Dr. Jessica', 1112223333, 'Gastroenterology', 7, 'password8', 'active'),
 (46, 'Dr. Andrew', 147483647, 'Psychiatry', 9, 'password9', 'active'),
-(47, 'Dr. James', 12103923, 'Family Medicine', 12, 'password10', 'active'),
-
--- --------------------------------------------------------
-
---
--- Table structure for table `doctor_patient`
---
-
-CREATE TABLE `doctor_patient` (
-  `Doctor_SSN` int(10) NOT NULL,
-  `Patient_SSN` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `doctor_patient`
---
-
-INSERT INTO `doctor_patient` (`Doctor_SSN`, `Patient_SSN`) VALUES
-(1, 1),
-(1, 2),
-(42, 23),
-(42, 25),
-(42, 33),
-(42, 37),
-(42, 56789),
-(42, 151097),
-(47, 27),
-(47, 28),
-(47, 29),
-(47, 30),
-(47, 32),
-(47, 33),
-(86585, 2),
-(86585, 151097);
+(47, 'Dr. James', 12103923, 'Family Medicine', 12, 'password10', 'active');
 
 -- --------------------------------------------------------
 
@@ -184,7 +182,7 @@ CREATE TABLE `drugs` (
   `Drug_Name` varchar(50) NOT NULL,
   `Drug_Description` varchar(200) DEFAULT NULL,
   `Drug_Category` varchar(100) NOT NULL,
-  `Drug_Image` longblob,
+  `Drug_Image` longblob DEFAULT NULL,
   `Drug_Quantity` int(4) NOT NULL,
   `Drug_Expiration_Date` date DEFAULT NULL,
   `Drug_Manufacturing_Date` date DEFAULT NULL,
@@ -195,79 +193,47 @@ CREATE TABLE `drugs` (
 -- Dumping data for table `drugs`
 --
 
--- Inserting 50 sample drugs into the drugs table
-
--- Analgesics
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(1, 'Aspirin', 'Pain reliever and fever reducer', 'Analgesic', 100, '2024-12-31', '2022-01-15', 'ABC Pharmaceuticals'),
-(2, 'Ibuprofen', 'Nonsteroidal anti-inflammatory drug', 'Analgesic', 75, '2024-11-30', '2022-03-10', 'PharmaCare'),
-(3, 'Acetaminophen', 'Commonly used for pain and fever', 'Analgesic', 90, '2024-10-31', '2022-02-20', 'MediWell Pharmaceuticals'),
-(4, 'Naproxen', 'Pain relief and anti-inflammatory', 'Analgesic', 60, '2024-09-30', '2022-05-25', 'HealthGuard Labs'),
-(5, 'Codeine', 'Prescription pain medication', 'Analgesic', 30, '2024-08-31', '2022-04-15', 'MediCo Health');
-
--- Antibiotics
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(6, 'Amoxicillin', 'Antibiotic used to treat bacterial infections', 'Antibiotic', 50, '2023-09-30', '2021-05-20', 'XYZ Pharma'),
-(7, 'Ciprofloxacin', 'Broad-spectrum antibiotic', 'Antibiotic', 40, '2023-07-31', '2021-06-05', 'MediCure Pharmaceuticals'),
-(8, 'Azithromycin', 'Used for respiratory and skin infections', 'Antibiotic', 65, '2023-06-30', '2021-08-10', 'PharmaStat Solutions'),
-(9, 'Doxycycline', 'Effective against various infections', 'Antibiotic', 80, '2023-05-31', '2021-07-15', 'LifeMed Labs'),
-(10, 'Penicillin', 'First antibiotic discovered', 'Antibiotic', 55, '2023-04-30', '2021-09-20', 'HealthyMeds Inc.');
-
--- Antihypertensives
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(11, 'Lisinopril', 'Blood pressure medication', 'Antihypertensive', 75, '2023-11-30', '2020-12-10', 'MediCo Health'),
-(12, 'Amlodipine', 'Used to treat high blood pressure', 'Antihypertensive', 70, '2023-10-31', '2020-11-05', 'PharmaLife'),
-(13, 'Losartan', 'Angiotensin receptor blocker', 'Antihypertensive', 60, '2023-08-31', '2020-10-15', 'HealthWise Pharmaceuticals'),
-(14, 'Hydrochlorothiazide', 'Diuretic and antihypertensive', 'Antihypertensive', 85, '2023-07-31', '2020-09-20', 'MediWell Pharmaceuticals'),
-(15, 'Metoprolol', 'Beta-blocker for high blood pressure', 'Antihypertensive', 95, '2023-06-30', '2020-08-25', 'HeartGuard Inc.');
-
--- Antilipidemics
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(16, 'Atorvastatin', 'Cholesterol-lowering medication', 'Antilipidemic', 60, '2023-08-31', '2021-03-05', 'PharmaStat Solutions'),
-(17, 'Simvastatin', 'HMG-CoA reductase inhibitor', 'Antilipidemic', 55, '2023-07-31', '2021-04-10', 'LifeMed Labs'),
-(18, 'Ezetimibe', 'Lowers cholesterol absorption', 'Antilipidemic', 45, '2023-06-30', '2021-02-15', 'MediCure Pharmaceuticals'),
-(19, 'Fenofibrate', 'Reduces triglycerides and cholesterol', 'Antilipidemic', 75, '2023-05-31', '2021-01-20', 'HealthGuard Labs'),
-(20, 'Rosuvastatin', 'Statins for cholesterol control', 'Antilipidemic', 70, '2023-04-30', '2021-06-25', 'PharmaCare');
-
--- Antidepressants
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(21, 'Sertraline', 'Selective serotonin reuptake inhibitor', 'Antidepressant', 80, '2023-10-31', '2021-07-15', 'MediWell Pharmaceuticals'),
-(22, 'Fluoxetine', 'Used to treat depression and anxiety', 'Antidepressant', 90, '2023-09-30', '2021-09-05', 'HealthyMeds Inc.'),
-(23, 'Escitalopram', 'SSRI for mood disorders', 'Antidepressant', 70, '2023-08-31', '2021-08-20', 'MediCure Pharmaceuticals'),
-(24, 'Bupropion', 'Atypical antidepressant', 'Antidepressant', 60, '2023-07-31', '2021-08-05', 'PharmaLife'),
-(25, 'Venlafaxine', 'Serotonin-norepinephrine reuptake inhibitor', 'Antidepressant', 50, '2023-06-30', '2021-07-25', 'PharmaStat Solutions');
-
--- Antidiabetics
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(26, 'Metformin', 'Oral medication for type 2 diabetes', 'Antidiabetic', 100, '2023-12-31', '2020-11-15', 'ABC Pharmaceuticals'),
-(27, 'Insulin Glargine', 'Long-acting insulin', 'Antidiabetic', 85, '2023-11-30', '2020-10-10', 'PharmaLife'),
-(28, 'Sitagliptin', 'Dipeptidyl peptidase-4 inhibitor', 'Antidiabetic', 70, '2023-10-31', '2020-09-05', 'HealthWise Pharmaceuticals'),
-(29, 'Gliclazide', 'Sulfonylurea for diabetes', 'Antidiabetic', 75, '2023-09-30', '2020-08-20', 'MediCure Pharmaceuticals'),
-(30, 'Empagliflozin', 'SGLT2 inhibitor', 'Antidiabetic', 65, '2023-08-31', '2020-07-25', 'PharmaCare');
-
--- Antihistamines
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(31, 'Cetirizine', 'Second-generation antihistamine', 'Antihistamine', 120, '2024-10-31', '2022-06-12', 'MediWell Pharmaceuticals'),
-(32, 'Diphenhydramine', 'Commonly used for allergies', 'Antihistamine', 100, '2024-09-30', '2022-04-25', 'ABC Pharmaceuticals'),
-(33, 'Loratadine', 'Non-drowsy allergy relief', 'Antihistamine', 80, '2024-08-31', '2022-03-20', 'PharmaStat Solutions'),
-(34, 'Fexofenadine', 'Effective against hay fever', 'Antihistamine', 60, '2024-07-31', '2022-02-15', 'HealthGuard Labs'),
-(35, 'Desloratadine', 'Long-lasting allergy relief', 'Antihistamine', 40, '2024-06-30', '2022-01-10', 'MediCo Health');
-
--- Antipsychotics
-INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) 
-VALUES 
-(36, 'Aripiprazole', 'Atypical antipsychotic', 'Antipsychotic', 70, '2023-12-31', '2020-12-15', 'MediCo Health'),
-(37, 'Risperidone', 'Used to treat schizophrenia', 'Antipsychotic', 65, '2023-11-30', '2020-11-10', 'PharmaLife'),
-(38, 'Olanzapine', 'Second-generation antipsychotic', 'Antipsychotic', 75, '2023-10-31', '2020-10-05', 'HealthWise Pharmaceuticals'),
-(39, 'Quetiapine', 'For bipolar disorder and schizophrenia', 'Antipsychotic', 85, '2023-09-30', '2020-09-20', 'MediCure Pharmaceuticals'),
-(40, 'Haloperidol', 'Typical antipsychotic', 'Antipsychotic', 95, '2023-08-31', '2020-08-15', 'HeartGuard Inc.');
+INSERT INTO `drugs` (`Drug_ID`, `Drug_Name`, `Drug_Description`, `Drug_Category`, `Drug_Image`, `Drug_Quantity`, `Drug_Expiration_Date`, `Drug_Manufacturing_Date`, `Drug_Company`) VALUES
+(1, 'Aspirin', 'Pain reliever and fever reducer', 'Analgesic', NULL, 100, '2024-12-31', '2022-01-15', 0),
+(2, 'Ibuprofen', 'Nonsteroidal anti-inflammatory drug', 'Analgesic', NULL, 75, '2024-11-30', '2022-03-10', 0),
+(3, 'Acetaminophen', 'Commonly used for pain and fever', 'Analgesic', NULL, 90, '2024-10-31', '2022-02-20', 0),
+(4, 'Naproxen', 'Pain relief and anti-inflammatory', 'Analgesic', NULL, 60, '2024-09-30', '2022-05-25', 0),
+(5, 'Codeine', 'Prescription pain medication', 'Analgesic', NULL, 30, '2024-08-31', '2022-04-15', 0),
+(6, 'Amoxicillin', 'Antibiotic used to treat bacterial infections', 'Antibiotic', NULL, 50, '2023-09-30', '2021-05-20', 0),
+(7, 'Ciprofloxacin', 'Broad-spectrum antibiotic', 'Antibiotic', NULL, 40, '2023-07-31', '2021-06-05', 0),
+(8, 'Azithromycin', 'Used for respiratory and skin infections', 'Antibiotic', NULL, 65, '2023-06-30', '2021-08-10', 0),
+(9, 'Doxycycline', 'Effective against various infections', 'Antibiotic', NULL, 80, '2023-05-31', '2021-07-15', 0),
+(10, 'Penicillin', 'First antibiotic discovered', 'Antibiotic', NULL, 55, '2023-04-30', '2021-09-20', 0),
+(11, 'Lisinopril', 'Blood pressure medication', 'Antihypertensive', NULL, 75, '2023-11-30', '2020-12-10', 0),
+(12, 'Amlodipine', 'Used to treat high blood pressure', 'Antihypertensive', NULL, 70, '2023-10-31', '2020-11-05', 0),
+(13, 'Losartan', 'Angiotensin receptor blocker', 'Antihypertensive', NULL, 60, '2023-08-31', '2020-10-15', 0),
+(14, 'Hydrochlorothiazide', 'Diuretic and antihypertensive', 'Antihypertensive', NULL, 85, '2023-07-31', '2020-09-20', 0),
+(15, 'Metoprolol', 'Beta-blocker for high blood pressure', 'Antihypertensive', NULL, 95, '2023-06-30', '2020-08-25', 0),
+(16, 'Atorvastatin', 'Cholesterol-lowering medication', 'Antilipidemic', NULL, 60, '2023-08-31', '2021-03-05', 0),
+(17, 'Simvastatin', 'HMG-CoA reductase inhibitor', 'Antilipidemic', NULL, 55, '2023-07-31', '2021-04-10', 0),
+(18, 'Ezetimibe', 'Lowers cholesterol absorption', 'Antilipidemic', NULL, 45, '2023-06-30', '2021-02-15', 0),
+(19, 'Fenofibrate', 'Reduces triglycerides and cholesterol', 'Antilipidemic', NULL, 75, '2023-05-31', '2021-01-20', 0),
+(20, 'Rosuvastatin', 'Statins for cholesterol control', 'Antilipidemic', NULL, 70, '2023-04-30', '2021-06-25', 0),
+(21, 'Sertraline', 'Selective serotonin reuptake inhibitor', 'Antidepressant', NULL, 80, '2023-10-31', '2021-07-15', 0),
+(22, 'Fluoxetine', 'Used to treat depression and anxiety', 'Antidepressant', NULL, 90, '2023-09-30', '2021-09-05', 0),
+(23, 'Escitalopram', 'SSRI for mood disorders', 'Antidepressant', NULL, 70, '2023-08-31', '2021-08-20', 0),
+(24, 'Bupropion', 'Atypical antidepressant', 'Antidepressant', NULL, 60, '2023-07-31', '2021-08-05', 0),
+(25, 'Venlafaxine', 'Serotonin-norepinephrine reuptake inhibitor', 'Antidepressant', NULL, 50, '2023-06-30', '2021-07-25', 0),
+(26, 'Metformin', 'Oral medication for type 2 diabetes', 'Antidiabetic', NULL, 100, '2023-12-31', '2020-11-15', 0),
+(27, 'Insulin Glargine', 'Long-acting insulin', 'Antidiabetic', NULL, 85, '2023-11-30', '2020-10-10', 0),
+(28, 'Sitagliptin', 'Dipeptidyl peptidase-4 inhibitor', 'Antidiabetic', NULL, 70, '2023-10-31', '2020-09-05', 0),
+(29, 'Gliclazide', 'Sulfonylurea for diabetes', 'Antidiabetic', NULL, 75, '2023-09-30', '2020-08-20', 0),
+(30, 'Empagliflozin', 'SGLT2 inhibitor', 'Antidiabetic', NULL, 65, '2023-08-31', '2020-07-25', 0),
+(31, 'Cetirizine', 'Second-generation antihistamine', 'Antihistamine', NULL, 120, '2024-10-31', '2022-06-12', 0),
+(32, 'Diphenhydramine', 'Commonly used for allergies', 'Antihistamine', NULL, 100, '2024-09-30', '2022-04-25', 0),
+(33, 'Loratadine', 'Non-drowsy allergy relief', 'Antihistamine', NULL, 80, '2024-08-31', '2022-03-20', 0),
+(34, 'Fexofenadine', 'Effective against hay fever', 'Antihistamine', NULL, 60, '2024-07-31', '2022-02-15', 0),
+(35, 'Desloratadine', 'Long-lasting allergy relief', 'Antihistamine', NULL, 40, '2024-06-30', '2022-01-10', 0),
+(36, 'Aripiprazole', 'Atypical antipsychotic', 'Antipsychotic', NULL, 70, '2023-12-31', '2020-12-15', 0),
+(37, 'Risperidone', 'Used to treat schizophrenia', 'Antipsychotic', NULL, 65, '2023-11-30', '2020-11-10', 0),
+(38, 'Olanzapine', 'Second-generation antipsychotic', 'Antipsychotic', NULL, 75, '2023-10-31', '2020-10-05', 0),
+(39, 'Quetiapine', 'For bipolar disorder and schizophrenia', 'Antipsychotic', NULL, 85, '2023-09-30', '2020-09-20', 0),
+(40, 'Haloperidol', 'Typical antipsychotic', 'Antipsychotic', NULL, 95, '2023-08-31', '2020-08-15', 0);
 
 -- --------------------------------------------------------
 
@@ -505,6 +471,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`Admin_ID`);
 
 --
+-- Indexes for table `api_access`
+--
+ALTER TABLE `api_access`
+  ADD PRIMARY KEY (`ID/SSN`,`User_type`);
+
+--
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
@@ -524,13 +496,6 @@ ALTER TABLE `contracts`
 --
 ALTER TABLE `doctors`
   ADD PRIMARY KEY (`Doctor_SSN`);
-
---
--- Indexes for table `doctor_patient`
---
-ALTER TABLE `doctor_patient`
-  ADD PRIMARY KEY (`Doctor_SSN`,`Patient_SSN`),
-  ADD KEY `Patient_SSN` (`Patient_SSN`);
 
 --
 -- Indexes for table `drugs`
@@ -596,96 +561,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `Company_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `contracts`
---
-ALTER TABLE `contracts`
-  MODIFY `Contract_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `drugs`
---
-ALTER TABLE `drugs`
-  MODIFY `Drug_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `drug_prices`
---
-ALTER TABLE `drug_prices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `pharmacy`
---
-ALTER TABLE `pharmacy`
-  MODIFY `Pharmacy_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `prescriptions`
---
-ALTER TABLE `prescriptions`
-  MODIFY `Prescription_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `supervisors`
---
-ALTER TABLE `supervisors`
-  MODIFY `Supervisor_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `contracts`
---
-ALTER TABLE `contracts`
-  ADD CONSTRAINT `contracts_ibfk_1` FOREIGN KEY (`Pharmacy_ID`) REFERENCES `pharmacy` (`Pharmacy_ID`),
-  ADD CONSTRAINT `contracts_ibfk_2` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`),
-  ADD CONSTRAINT `contracts_ibfk_3` FOREIGN KEY (`Supervisor_ID`) REFERENCES `supervisors` (`Supervisor_ID`);
-
---
--- Constraints for table `doctor_patient`
---
-ALTER TABLE `doctor_patient`
-  ADD CONSTRAINT `doctor_patient_ibfk_1` FOREIGN KEY (`Doctor_SSN`) REFERENCES `doctors` (`Doctor_SSN`),
-  ADD CONSTRAINT `doctor_patient_ibfk_2` FOREIGN KEY (`Patient_SSN`) REFERENCES `patients` (`Patient_SSN`);
-
---
--- Constraints for table `drugs`
---
-ALTER TABLE `drugs`
-  ADD CONSTRAINT `drug-company-fk1` FOREIGN KEY (`Drug_Company`) REFERENCES `company` (`Company_ID`);
-
---
--- Constraints for table `drug_prices`
---
-ALTER TABLE `drug_prices`
-  ADD CONSTRAINT `drug_prices_ibfk_1` FOREIGN KEY (`Drug_ID`) REFERENCES `drugs` (`Drug_ID`),
-  ADD CONSTRAINT `drug_prices_ibfk_2` FOREIGN KEY (`Pharmacy_ID`) REFERENCES `pharmacy` (`Pharmacy_ID`);
-
---
--- Constraints for table `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Patient_SSN`) REFERENCES `patients` (`Patient_SSN`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`Drug_ID`) REFERENCES `drugs` (`Drug_ID`);
-
---
--- Constraints for table `prescriptions`
---
-ALTER TABLE `prescriptions`
-  ADD CONSTRAINT `pres_fk_3` FOREIGN KEY (`Drug_ID`) REFERENCES `drugs` (`Drug_ID`),
-  ADD CONSTRAINT `prescriptions_ibfk_1` FOREIGN KEY (`Patient_SSN`) REFERENCES `patients` (`Patient_SSN`),
-  ADD CONSTRAINT `prescriptions_ibfk_2` FOREIGN KEY (`Doctor_SSN`) REFERENCES `doctors` (`Doctor_SSN`);
+  MODIFY `Company_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

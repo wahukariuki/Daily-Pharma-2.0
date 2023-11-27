@@ -67,6 +67,7 @@ include "../functions.php";
         </div>
 
           <div class="main_content">
+          
 
             <div class="category-content active" id="Manage-Drugs">
                 <div class="container my-5">
@@ -203,9 +204,9 @@ include "../functions.php";
     </div>
                 </div>
             </div>
-            <div class="category-content" id="Api_request">
+            <div class="category-content" id="Api-details">
                 <div class="container my-5">
-                    
+                    <div class="token">
                         <h1>Token generation</h1>
                     <button id="generateTokenBtn">Genearate api token</button>
                     <div id="apiTokenResult"></div>
@@ -213,22 +214,22 @@ include "../functions.php";
 
                     <script>
                          $("#generateTokenBtn").on("click", function() {
-                    // AJAX to check if the user is registered and generate API token
+                    
                     $.ajax({
                         url: "generate_api_token.php",  // Adjust the path based on your setup
                         method: "POST",
                         dataType: "json",
                         success: function(response) {
                             if (response.status === "success") {
-                                // API token generated successfully
+                                
                                 $("#apiTokenResult").html("<p>Generated API Token: " + response.apiToken + "</p>");
                             } else if (response.status === "registration_required") {
-                                // User not registered, show registration form
+                                
                                 $("#apiTokenResult").html(response.registrationForm);
                                 $("#apiRegistrationForm").on("submit", function(event) {
                                     event.preventDefault();
                                     $.ajax({
-                                        url: "apirequest.php",  // Adjust the path based on your setup
+                                        url: "apirequest.php",  
                                         method: "POST",
                                         data: $(this).serialize(),
                                         success: function(registrationResponse) {
@@ -264,7 +265,7 @@ include "../functions.php";
                     </div>
                    </div>
     </div>
-    
+    </div>
 
 
 

@@ -50,11 +50,22 @@ include "../inc/view_header.php";
                 <li class="category-item" data-category="Manage-Prescriptions">PENDING PRESCRIPTIONS</li>
                 <li class="category-item" data-category="Prescription-History">PRESCRIPTION HISTORY </li>
                 <li class="category-item" data-category="Online-Orders">ONLINE ORDERS</li>
+                <li class="category-item" data-category="Api-data">API Details</li>
+
 
             </ul>
         </div>
 
         <div class="main_content">
+        <div class="category-content " id="Api-data">
+                <div class="container my-5">
+                    <h2>API TOKENS</h2>
+                    <a class="btn btn-primary" id="api_token" href="api_generate.php" role="button">Generate general api</a>
+                    <a class="btn btn-primary" id="specific token.php" href="api_generate.php" role="button">Generate specific api</a>
+                    
+
+                </div> </div>
+
 
             <div class="category-content active" id="Manage-Drugs">
                 <div class="container my-5">

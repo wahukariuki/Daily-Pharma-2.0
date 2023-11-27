@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         $pharmacies=$_GET["Pharmacies"];
         $company=$_GET["company"];
 
-        $sql="SELECT * FROM api_access WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'"
+        $sql="SELECT * FROM api_access WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $sql2="UPDATE api_access SET `Doctors`='$doctors' AND `Patients`='$patients' AND `Pharmacies`='$pharmacies' AND `Company`='$company' WHERE `ID/SSN`= '$ID_SSN' AND `User_type`='$User_type'";
@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         $pharmacies=$_POST["Pharmacies"];
         $company=$_POST["company"];
 
-        if(empty($ID_SSN))||(empty($User_type)){
+        if(empty($ID_SSN)||empty($User_type)){
             $errorMessage = "Some of the files you left empty are required";
                // break;
         }
@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
         if (!$result) {
             $errorMessage = "Invalid query: " . $conn->error;
-            break;
+            //break;
         }
 
         $successMessage = "API access granted updated correctly";

@@ -28,7 +28,7 @@ $result2 = $connection->query($sql2);
 
 if (!$result2) {
     $errorMessage = "Invalid Query: " . $connection->error;
-    break;
+    //break;
 }
 
 $sql3="INSERT INTO api_access(ID/SSN,User_type,Drugs,Patients,Doctors,Pharmacies,Company,Password)
@@ -37,7 +37,7 @@ $result3 = $connection->query($sql3);
 
 if (!$result3) {
     $errorMessage = "Invalid Query: " . $connection->error;
-    break;
+   // break;
 }
 }
 
