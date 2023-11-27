@@ -60,6 +60,9 @@ include "../functions.php";
                 <li class="category-item active" data-category="Manage-Drugs">MANAGE DRUGS</li>
                 <li class="category-item" data-category="Manage-Contracts">MANAGE CONTRACTS</li>
                 <li class="category-item" data-category="View-Drugs">VIEW ALL DRUGS IN THE SYSTEM</li>
+                <li class="category-item" data-category="Api-details">API DETAILS</li>
+
+                
             </ul>
         </div>
 
@@ -201,6 +204,71 @@ include "../functions.php";
     </div>
                 </div>
             </div>
+            <div class="category-content" id="Api_request">
+                <div class="container my-5">
+                    
+                        <h1>Token generation</h1>
+                    <button id="generateTokenBtn">Genearate api token</button>
+                    <div id="apiTokenResult"></div>
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+                    <script>
+                         $("#generateTokenBtn").on("click", function() {
+                    // AJAX to check if the user is registered and generate API token
+                    $.ajax({
+                        url: "generate_api_token.php",  // Adjust the path based on your setup
+                        method: "POST",
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.status === "success") {
+                                // API token generated successfully
+                                $("#apiTokenResult").html("<p>Generated API Token: " + response.apiToken + "</p>");
+                            } else if (response.status === "registration_required") {
+                                // User not registered, show registration form
+                                $("#apiTokenResult").html(response.registrationForm);
+                                $("#apiRegistrationForm").on("submit", function(event) {
+                                    event.preventDefault();
+                                    $.ajax({
+                                        url: "apirequest.php",  // Adjust the path based on your setup
+                                        method: "POST",
+                                        data: $(this).serialize(),
+                                        success: function(registrationResponse) {
+                                            $("#apiTokenResult").html(registrationResponse);
+                                        },
+                                        error: function(error) {
+                                            console.error("Error:", error);
+                                            $("#apiTokenResult").html("<p>Error during registration.</p>");
+                                        }
+                                    });
+                                });
+                            } else {
+                                // Other error occurred
+                                $("#apiTokenResult").html("<p>Error generating API token.</p>");
+                            }
+                        },
+                        error: function(error) {
+                            console.error("Error:", error);
+                            $("#apiTokenResult").html("<p>Error generating API token.</p>");
+                        }
+                    });
+                });
+        
+
+
+
+
+
+                        
+                
+
+                       </script>
+                    </div>
+                   </div>
+    </div>
+    
+
+
+
         </div> 
     </div>
     <script src="../overlay_script.js"></script>
