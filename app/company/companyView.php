@@ -111,6 +111,7 @@ include "../functions.php";
                             <a class='btn btn-danger btn-sm' href='confirmDeleteDrug.php?id=" . $row["Drug_ID"] . "'>Delete</a>
                         </td>
                     
+                        
                          </tr>";
                          }
                      } else {
