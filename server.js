@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express')
 const path = require('path')
-const bcrypt = require('bcrypt')
 const mysql2 = require('mysql2')
 const jwt = require('jsonwebtoken')
 const session = require('express-session');
@@ -24,7 +23,8 @@ const users = []
 let refreshTokens = []
 
 app.use(express.static(path.join(__dirname, 'public'))) // Acess the right folder
-app.use(express.json()) // Alloww express to send json
+
+app.use(express.json()) // Allow express to send json
 
 // Use express-session middleware
 app.use(session({
@@ -179,12 +179,11 @@ app.post('/refresh', (req,res)=>{
       if(err) return res.sendStatus(403)
       const accessToken = generateAccessToken({SSN : user.SSN})
       res.json({accessToken : accessToken})
-
   })
 
 })
 
-// Get all api users
+// Get all api users using token authentication
 app.get('/users', authenticateToken, (req, res) => {
     const user = req.session.user
   
@@ -193,7 +192,7 @@ app.get('/users', authenticateToken, (req, res) => {
     }
   
     connection.query(
-      'SELECT `ID/SSN`, `User_Type`, `Password` FROM FROM `api_access`',
+      'SELECT `ID/SSN`, `User_Type`, `Password` FROM `api_access`',
       (err, results) => {
         if (err) return res.status(500).json({ message: 'Internal Server Error' });
         res.status(200).json(results);
@@ -201,45 +200,7 @@ app.get('/users', authenticateToken, (req, res) => {
     )
 })
 
-//Beginning to add the databse
-// app.get('/users', authenticateToken ,(req,res)=>{
-//     res.json(users.filter(user => user.name == req.user.name ))
-// })
-
-app.post('/users', async (req,res)=>{
-    // const user = { name: req.body.name, password: req.body.password}
-    // users.push(user) 
-    // res.status(201).send()
-    try{
-        await bcrypt.genSalt()
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        let user = { name : req.body.name, password : hashedPassword}
-        users.push(user)
-        res.sendStatus(201).send()
-    }catch{
-        res.sendStatus(500).send()
-    }    
-})
-
-app.post('/users/login', async (req,res)=>{
-    //User Authentication
-    const user = users.find(user => user.name == req.body.name)
-    if (user == null) return res.sendStatus(400).send("Cannot find user")
-    try{
-        if(await bcrypt.compare(req.body.password, user.password)){
-
-            const accessToken = generateAccessToken(user)
-            const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
-            refreshTokens.push(refreshToken)
-            res.json({accessToken : accessToken, refreshToken : refreshToken})
-
-        }else{
-            res.send("NOT ALLOWED")
-        }
-    }catch{
-        res.sendStatus(500).send()
-    }     
-})
+//Access data without authentication
 
 app.post('/token',(req,res)=>{
     const refreshToken = req.body.token

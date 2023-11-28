@@ -1,6 +1,6 @@
 ###
 //Testing patient routes
-GET http://localhost:3000/patients/ssn/2
+GET http://localhost:3000/patients
 
 ###
 GET http://localhost:3000/patients/email/michaeldavis@gmail.com

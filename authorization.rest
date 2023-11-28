@@ -22,7 +22,7 @@
 
 ###
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTcwMTAxMDQ5OCwiZXhwIjoxNzAxMDEwNTU4fQ.6kxYueYsgPubW3OpcW-F82osUEM05l_1t2qtz5N-dgQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDExNzUwODMsImV4cCI6MTcwMTE3NTEwM30.dpwbwkf8X0mcMC7NHbK6gsbeCXsOxNrVvCNC-aFbzKE
 
 ###
 POST http://localhost:3000/register
@@ -48,8 +48,8 @@ Content-Type: application/json
 GET http://localhost:3000/tokens
 
 ###
-
 POST http://localhost:3000/refresh
+Content-Type: application/json
 
 {
     "token" : "eyJhbGciOiJIUzI1NiJ9.MTAw.Vlp-9MwIr8fylhV9C46cGXz4HZ4f7rhzkOeLimSKRTg"
