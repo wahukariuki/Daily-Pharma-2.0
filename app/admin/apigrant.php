@@ -39,11 +39,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     $User_type=$_POST["User_type"];
 $Resource=$_POST["resource_type"];
 
-<<<<<<< HEAD
-if(empty($ID_SSN)||empty($User_type)){
-=======
 if(empty($ID_SSN)||(empty($User_type)||(empty($Resource)))){
->>>>>>> 869cb8f74a491e941e5e575d60e173b914784b60
         $errorMessage = "All fields are required";
            // break;
     }

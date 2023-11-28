@@ -22,7 +22,7 @@ if (isset($_SESSION['ID'])) {
         }
 
     
-    $sql2="SELECT * FROM api_access WHERE `ID/SSN` = $ID AND Pharmacies='allowed' AND Doctors='allowed' AND drugs='allowed'  "
+    $sql2="SELECT * FROM api_access WHERE `ID/SSN` = $ID AND Pharmacies='allowed' AND Doctors='allowed' AND drugs='allowed'  ";
     $result2 = $conn->query($sql2);
     if($result->num_rows>0){
         $specific_apiToken = bin2hex(random_bytes(32));

@@ -61,7 +61,8 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
         header("location: apigrant.php");
         exit;
-    } while (false);
+    } 
+}while (false);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -156,4 +157,3 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     
 </body>
 </html>
-        
