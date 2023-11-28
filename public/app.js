@@ -10,6 +10,16 @@ app.get('/',(req,res)=>{
 
 });
 app.use('/api',authRoutes);
+const path = require('path');
+app.get('/register.html', (req, res) => {
+    console.log('Request for register.html received.');
+    res.sendFile(path.join(__dirname, 'register.html'));
+  });
+  app.get('/index.html', (req, res) => {
+    console.log('Request for index.html received.');
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+  
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

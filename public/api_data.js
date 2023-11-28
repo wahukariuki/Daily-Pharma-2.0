@@ -18,4 +18,5 @@ const userSchema={
    User_type:{type:'VARCHAR(100)',allowNull:false},
    Password:{type:'VARCHAR(100)',allowNull:false},
 };
-module.exports = {db,userSchema};
+module.exports = {db,
+    userSchema};
