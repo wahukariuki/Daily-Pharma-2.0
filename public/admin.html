@@ -1,12 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <!-- Create a user interface for the admin with user.html as a template -->
-    <!-- The admin should have an additional tab to grant access -->
+    <div class="container my-5" id="about">
+        <h2>List of API requests</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User type</th>
+                    <th>ID/SSN</th>
+                    <th>Resouce requested</th>
+
+                </tr>
+            </thead>
+            <!-- <tbody>
+                <?php
+                require_once("../connect.php");
+                $resultsPerPage = 5;
+                $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                $offset = ($currentPage - 1) * $resultsPerPage;
+
+                $countQuery = "SELECT COUNT(*) AS total FROM api_access_request";
+                $countResult = $conn->query($countQuery);
+                $countRow = $countResult->fetch_assoc();
+                $totalResults = $countRow['total'];
+                $totalPages = ceil($totalResults / $resultsPerPage);
+
+                $sql = "SELECT * FROM api_access_request LIMIT $offset, $resultsPerPage";
+                $result = $conn->query($sql);
+
+                
+
+                if (!$result) {
+                    die("Invalid query: " . $conn->error);
+                }
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+                        <tr>
+                            <td>{$row['ID/SSN']}</td>
+                            <td>{$row['User_type']}</td>
+                            <td>{$row['Resource']}</td>
+                            <td><a class='btn btn-danger btn-sm' href='apigrant.php?id=" . $row['ID/SSN'] ."'>Edit</a></td>
+                        </tr>";
+                }
+                
+                
+                ?>-->
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <!-- <?php
+            for ($i = 1; $i <= $totalPages; $i++) {
+                $activeClass = ($i == $currentPage) ? 'active' : '';
+                echo "<li class='page-item $activeClass'><a class='page-link' href='adminView.php?page=$i'>$i</a></li>";
+            }
+            ?>-->
+            </ul>
+        </nav>
+        <div class="container my-5" id="about">
+            <h2>List of API users </h2>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User type</th>
+                        <th>ID/SSN</th>
+                        <th>Drugs</th>
+                        <th>Doctors</th>
+                        <th>Pharmacies</th>
+                        <th>Patients</th>
+                        <th>Company</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--<?php
+                require_once("../connect.php");
+                $resultsPerPage = 5;
+                $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                $offset = ($currentPage - 1) * $resultsPerPage;
+
+                $countQuery = "SELECT COUNT(*) AS total FROM api_access_request";
+                $countResult = $conn->query($countQuery);
+                $countRow = $countResult->fetch_assoc();
+                $totalResults = $countRow['total'];
+                $totalPages = ceil($totalResults / $resultsPerPage);
+
+                $sql = "SELECT * FROM api_access_request LIMIT $offset, $resultsPerPage";
+                $result = $conn->query($sql);
+
+                
+
+                if (!$result) {
+                    die("Invalid query: " . $conn->error);
+                }
+
+                
+                    while ($row = $result->fetch_assoc()) {
+                        echo "
+                            <tr>
+                                <td>{$row['ID/SSN']}</td>
+                                <td>{$row['User_type']}</td>
+                                <td>{$row['Drugs']}</td>
+                                <td>{$row['Patients']}</td>
+                                <td>{$row['Doctors']}</td>
+                                <td>{$row['Company']}</td>
+                                <td>{$row['Pharmacies']}</td>
+                                
+                                <td><a class='btn btn-danger btn-sm' href='apiedit.php?id=" . $row['ID/SSN'] ."'>Edit</a></td>
+                            </tr>";
+                    }
+                    
+                
+                ?>
+                </tbody>-->
+            </table>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <!--  <?php
+            for ($i = 1; $i <= $totalPages; $i++) {
+                $activeClass = ($i == $currentPage) ? 'active' : '';
+                echo "<li class='page-item $activeClass'><a class='page-link' href='adminView.php?page=$i'>$i</a></li>";
+            }
+            ?>-->
+                </ul>
+            </nav>
+
+            <!-- The admin should have an additional tab to grant access -->
 </body>
+
 </html>
