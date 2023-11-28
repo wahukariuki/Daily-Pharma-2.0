@@ -1,28 +1,6 @@
-GET http://localhost:3000/users
-
-###
-
-POST http://localhost:3000/users
-Content-Type: application/json
-
-{
-    "name": "Kyle",
-    "password": "password"
-}
-
-###
-
-POST http://localhost:3000/users/login
-Content-Type: application/json
-
-{
-    "name": "Kyle",
-    "password": "password"
-}
-
 ###
 //Testing patient routes
-GET http://localhost:3000/patients/ssn/2
+GET http://localhost:3000/patients
 
 ###
 GET http://localhost:3000/patients/email/michaeldavis@gmail.com
@@ -84,34 +62,3 @@ GET http://localhost:3000/drugs/id/35
 
 ###
 GET http://localhost:3000/drugs/category/Antibiotic
-
-###
-GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTcwMTAxMDQ5OCwiZXhwIjoxNzAxMDEwNTU4fQ.6kxYueYsgPubW3OpcW-F82osUEM05l_1t2qtz5N-dgQ
-
-###
-POST http://localhost:3000/users
-Content-Type: application/json
-
-{
-    "name" : "Jim",
-    "password": "password"
-}
-
-###
-POST http://localhost:3000/users/login
-Content-Type: application/json
-
-{
-    "name" : "Jim",
-    "password": "password"
-}
-
-###
-POST http://localhost:3000/token
-Content-Type: application/json
-
-{
-    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsInBhc3N3b3JkIjoiJDJiJDEwJDZaNmdtV0ZvdXgzanpWSkM5djRHNy50MzhXZmF4dVl2MU5UeGk2SkluOUgxeWlRckFvOUV5IiwiaWF0IjoxNzAxMDEwNDMxfQ.TZLJSfzP-qhXWBIXl1JAFH4QfwYrVBoz4l9G6Xda9cI"
-}
-
