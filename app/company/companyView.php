@@ -61,8 +61,6 @@ include "../functions.php";
                 <li class="category-item" data-category="Manage-Contracts">MANAGE CONTRACTS</li>
                 <li class="category-item" data-category="View-Drugs">VIEW ALL DRUGS IN THE SYSTEM</li>
                 <li class="category-item" data-category="Api-details">API DETAILS</li>
-
-                
             </ul>
         </div>
 

@@ -58,10 +58,10 @@ button:hover{
     border-radius: 10px;
 }
 
-input{
+input,select{
     width: 300px;
     height: 70px;
-    font-size: 0.7em;
+    font-size: 0.9em;
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -82,4 +82,57 @@ legend{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+a{
+    color: #25dcc9;
+}
+
+.bars{
+    padding: 30px;
+    padding-right: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    background: transparent;
+}
+
+.sidebar {
+    background-color:#019587;
+    border-radius: 10px;
+    padding: 20px;
+}
+  
+.category-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.category-item {
+    cursor: pointer;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+  
+.category-item:hover {
+    background-color: #dcdcdc;
+}
+  
+.category-item.active {
+    background-color: #ccc;
+}
+  
+.main_content {
+    margin-left: 70px;
+}
+  
+.category-content {
+    display: none;
+    width: 100%;
+}
+
+.category-content.show {
+    display: inline-block;
+    /* flex-direction: row; */
 }
