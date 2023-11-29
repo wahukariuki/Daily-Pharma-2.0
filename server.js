@@ -52,6 +52,7 @@ app.listen(3000 , ()=>{
     console.log("API up and running")
 })
 
+//Endpoint to register a new user
 app.post('/register', (req,res)=>{
     //Retrieve the data from the body req
     const userType = req.body.userType
@@ -84,6 +85,7 @@ app.post('/register', (req,res)=>{
     })
 })
 
+//Endpoint to login an existing user
 app.post('/login', (req, res) => {
     const userType = req.body.userType;
     const SSN = req.body.SSN;
@@ -134,12 +136,13 @@ app.post('/login', (req, res) => {
     });
 })
 
+//Endpoints to generate tokens
 app.get('/tokens', (req, res) => {
     //To get the access token
       const user = req.session.user;
   
       if (!user) {
-          return res.status(401).json({ message: 'Unauthorized' });
+          return res.status(401).json({ message: 'Unauthorized. Please Login to get a token' });
       }
       console.log(user);
   
@@ -150,12 +153,13 @@ app.get('/tokens', (req, res) => {
       res.status(200).json({ accessToken: accessToken , refreshToken : refreshToken});
 });
 
+//Function to authenticate whether an endpint has the necessay access token
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
     if (token == null) {
-        return res.status(401).json({ message: 'Authorization Failed' });
+        return res.status(401).json({ message: 'Authorization Failed. Token Not Available' });
     }
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, userData) => {
@@ -165,11 +169,13 @@ function authenticateToken(req, res, next) {
     });
 }
 
+//Function to generate tokens
 function generateAccessToken(user) {
     const payload = { SSN: user.SSN }; // Extract the SSN from the user object
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn : '20s'});
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn : '1m'});
 }
   
+//Endpoint to generate a new access token once original expires
 app.post('/refresh', (req,res)=>{
   //Generate a new access token
   const refreshToken = req.body.token
@@ -184,7 +190,7 @@ app.post('/refresh', (req,res)=>{
 })
 
 // Get all api users using token authentication
-app.get('/users', authenticateToken, (req, res) => {
+app.get('/', authenticateToken, (req, res) => {
     const user = req.session.user
   
     if (!user) {
@@ -192,7 +198,7 @@ app.get('/users', authenticateToken, (req, res) => {
     }
   
     connection.query(
-      'SELECT `ID/SSN`, `User_Type`, `Password` FROM `api_access`',
+      'SELECT `Patient_SSN` FROM `patients`',
       (err, results) => {
         if (err) return res.status(500).json({ message: 'Internal Server Error' });
         res.status(200).json(results);
