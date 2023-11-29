@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./api_auth');
 app.use(cors());
 app.use(bodyParser.json());
-const path = require('path'); 
+//const path = require('path'); 
 app.use(express.static(path.join(__dirname)));
 
 const mysql=require('mysql2');
