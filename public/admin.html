@@ -9,64 +9,80 @@
 </head>
 
 <body>
-    <!-- Create a user interface for the admin with user.html as a template -->
-    <div class="container my-5" id="about">
-        <h2>List of API requests</h2>
-        <br>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>User type</th>
-                    <th>ID/SSN</th>
-                    <th>Resouce requested</th>
+    <header>
+        <div class="logo">
+            <a href="index.html">DailyPharma API</a>
+            <hr>
+        </div>
+    </header>
+    <div class="bars">
+        <div class="sidebar">
+            <ul class="category-list">
+                <li class="category-item active" data-category="requests">VIEW REQUESTS</li>
+                <li class="category-item" data-category="users">MANAGE USERS</li>
 
-                </tr>
-            </thead>
-            <tbody>
-                <script>
-                    fetch('/apiUsers')
-                        .then((response) => response.json())
-                        .then((data) => {
-                            // Handle the fetched data
-                            console.log('API Users:', data);
+            </ul>
+        </div>
+        <!-- Create a user interface for the admin with user.html as a template -->
+        <div class="container my-5" id="requests">
+            <h2>List of API requests</h2>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User type</th>
+                        <th>ID/SSN</th>
+                        <th>Resouce requested</th>
 
-                            // Update the table with the fetched data
-                            const tableBody = document.querySelector('#apiUsersTable tbody');
-                            data.forEach((user) => {
-                                const row = tableBody.insertRow();
-                                const userTypeCell = row.insertCell(0);
-                                const idCell = row.insertCell(1);
-                                const resourceCell = row.insertCell(2); // Assuming 'resource_requested' is the third column
-                                // Add more cells for other user details
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        fetch('/apiUsers')
+                            .then((response) => response.json())
+                            .then((data) => {
+                                // Handle the fetched data
+                                console.log('API Users:', data);
 
-                                userTypeCell.textContent = user.userType;
-                                idCell.textContent = user.id;
-                                resourceCell.textContent = user.resource_requested; // Adjust this based on your database schema
-                                // Set values for other cells
+                                // Update the table with the fetched data
+                                const tableBody = document.querySelector('#apiUsersTable tbody');
+                                data.forEach((user) => {
+                                    const row = tableBody.insertRow();
+                                    const userTypeCell = row.insertCell(0);
+                                    const idCell = row.insertCell(1);
+                                    const resourceCell = row.insertCell(2);
 
-                                // Add Edit button at the end of the row
-                                const editCell = row.insertCell(-1);
-                                const editButton = document.createElement('button');
-                                editButton.textContent = 'Edit';
-                                editButton.addEventListener('click', () => {
-                                    // Call the function to open the edit page with user details filled in
-                                    openEditPage(user.id, user.userType, user.resource_requested);
+                                    // Assuming 'resource_requested' is the third column
+                                    // Add more cells for other user details
+
+                                    userTypeCell.textContent = user.userType;
+                                    idCell.textContent = user.id;
+                                    resourceCell.textContent = user.resource_requested; // Adjust this based on your database schema
+                                    // Set values for other cells
+
+                                    // Add Edit button at the end of the row
+                                    const editCell = row.insertCell(-1);
+                                    const editButton = document.createElement('button');
+                                    editButton.textContent = 'Edit';
+                                    editButton.addEventListener('click', () => {
+                                        // Call the function to open the edit page with user details filled in
+                                        openEditPage(user.id, user.userType, user.resource_requested);
+                                    });
+                                    editCell.appendChild(editButton);
                                 });
-                                editCell.appendChild(editButton);
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching API users:', error);
                             });
-                        })
-                        .catch((error) => {
-                            console.error('Error fetching API users:', error);
-                        });
 
-                    // Function to open the edit page with filled-in details
-                    function openEditPage(id, userType, resourceRequested) {
-                        const editPageUrl = `/api_grant?id=${id}&userType=${userType}&resourceRequested=${resourceRequested}`;
-                        window.location.href = "api_grant.html";
-                    }
+                        // Function to open the edit page with filled-in details
+                        function openEditPage(id, userType, resourceRequested) {
+                            const editPageUrl = `/api_grant?id=${id}&userType=${userType}&resourceRequested=${resourceRequested}`;
+                            window.location.href = "api_grant.html";
+                        }
 
-                </script>
-                <!-- <tbody>
+                    </script>
+                    <!-- <tbody>
                 <?php
                 require_once("../connect.php");
                 $resultsPerPage = 5;
@@ -99,85 +115,80 @@
                 
                 
                 ?>-->
-            </tbody>
-        </table>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <!-- <?php
-            for ($i = 1; $i <= $totalPages; $i++) {
-                $activeClass = ($i == $currentPage) ? 'active' : '';
-                echo "<li class='page-item $activeClass'><a class='page-link' href='adminView.php?page=$i'>$i</a></li>";
-            }
-            ?>-->
-            </ul>
-        </nav>
-        <div class="container my-5" id="about">
-            <h2>List of API users </h2>
-            <br>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>User type</th>
-                        <th>ID/SSN</th>
-                        <th>Drugs</th>
-                        <th>Doctors</th>
-                        <th>Pharmacies</th>
-                        <th>Patients</th>
-                        <th>Company</th>
+                </tbody>
+            </table>
+
+            <div class="container my-5" id="users">
+                <h2>List of API users </h2>
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User type</th>
+                            <th>ID/SSN</th>
+                            <th>Drugs</th>
+                            <th>Doctors</th>
+                            <th>Pharmacies</th>
+                            <th>Patients</th>
+                            <th>Company</th>
 
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <script> fetch('/apiSpecific')
-                            .then((response) => response.json())
-                            .then((data) => {
-                                console.log('Specific API Users:', data);
-                                const tablebody2 = document.querySelector('#apiSpecificTable tbody');
-                                data.forEach((user) => {
-                                    const row = tablebody.insertRow();
-                                    const userTypeCell2 = row.insertCell(0);
-                                    const idCell2 = row.insertCell(1);
-                                    const drugsCell = row.insertCell(2);
-                                    const doctorsCell = row.insertCell(3);
-                                    const pharmaciesCell = row.insertCell(4);
-                                    const patientsCell = row.insertCell(5);
-                                    const CompanyCell = row.insertCell(6);
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script> fetch('/apiSpecific')
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    console.log('Specific API Users:', data);
+                                    const tablebody2 = document.querySelector('#apiSpecificTable tbody');
+                                    data.forEach((user) => {
+                                        const row = tablebody.insertRow();
+                                        const userTypeCell2 = row.insertCell(0);
+                                        const idCell2 = row.insertCell(1);
+                                        const drugsCell = row.insertCell(2);
+                                        const doctorsCell = row.insertCell(3);
+                                        const pharmaciesCell = row.insertCell(4);
+                                        const patientsCell = row.insertCell(5);
+                                        const CompanyCell = row.insertCell(6);
+                                        const tokenCell = row.insertCell(7);
 
 
-                                    userTypeCell2.textContent = user.user_type;
-                                    idCell2.textContent = user.id_ssn;
-                                    drugsCell.textContent = user.drugs;
-                                    doctorsCell.textContent = user.doctors;
-                                    pharmaciesCell.textContent = user.pharmacies;
-                                    patientsCell.textContent = user.patients;
-                                    CompanyCell.textContent = user.company;
-                                    const editCell = row.insertCell(-1);
-                                    const editButton = document.createElement('button');
-                                    editButton.textContent = 'Edit';
-                                    editButton.addEventListener('click', () => {
-                                        // Call the function to open the edit page with user details filled in
-                                        openEditPage(user.id_ssn, user.user_type, user.drugs, user.doctors, user.company, user.patients, user.pharmacies);
+                                        userTypeCell2.textContent = user.user_type;
+                                        idCell2.textContent = user.id_ssn;
+                                        drugsCell.textContent = user.drugs;
+                                        doctorsCell.textContent = user.doctors;
+                                        pharmaciesCell.textContent = user.pharmacies;
+                                        patientsCell.textContent = user.patients;
+                                        CompanyCell.textContent = user.company;
+                                        const editCell = row.insertCell(-1);
+                                        const editButton = document.createElement('button');
+                                        editButton.textContent = 'Edit';
+                                        const tokenbtn = document.createElement('button');
+                                        tokenbtn.textContent = 'Generate token';
+                                        editButton.addEventListener('click', () => {
+                                            // Call the function to open the edit page with user details filled in
+                                            openEditPage(user.id_ssn, user.user_type, user.drugs, user.doctors, user.company, user.patients, user.pharmacies);
+                                        });
+                                        editCell.appendChild(editButton);
                                     });
-                                    editCell.appendChild(editButton);
+
+                                })
+                                .catch((error) => {
+                                    console.error('Error fetching API users:', error);
                                 });
-                            })
-                            .catch((error) => {
-                                console.error('Error fetching API users:', error);
-                            });
 
-                        // Function to open the edit page with filled-in details
-                        function openEditPage(id, userType, resourceRequested) {
-                            const editPageUrl = `/api_edit?id=${id}&userType=${userType}&resourceRequested=${resourceRequested}`;
-                            window.location.href = "api_edit.html";
-                        }
+                            // Function to open the edit page with filled-in details
+                            function openEditPage(id, userType, resourceRequested) {
+                                const editPageUrl = `/api_edit?id=${id}&userType=${userType}&resourceRequested=${resourceRequested}`;
+                                window.location.href = "api_edit.html";
+                            }
 
 
 
-                    </script>
+                        </script>
 
 
-                    <!--<?php
+                        <!--<?php
                 require_once("../connect.php");
                 $resultsPerPage = 5;
                 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -217,19 +228,10 @@
                 
                 ?>
                 </tbody>-->
-            </table>
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <!--  <?php
-            for ($i = 1; $i <= $totalPages; $i++) {
-                $activeClass = ($i == $currentPage) ? 'active' : '';
-                echo "<li class='page-item $activeClass'><a class='page-link' href='adminView.php?page=$i'>$i</a></li>";
-            }
-            ?>-->
-                </ul>
-            </nav>
+                </table>
 
-            <!-- The admin should have an additional tab to grant access -->
+
+
 </body>
 
 </html>

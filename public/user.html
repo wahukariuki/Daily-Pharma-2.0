@@ -30,6 +30,13 @@
             <div class="category-content" id="Generate-Tokens">
                 <div class="container my-5">
                     <h2>Generate Tokens</h2>
+                    <button type="button">Generate token for user</button>
+                    <div class="token">
+                        <textarea name="token" id="token" cols="30" rows="10"></textarea>
+                        <button type="button"> refresh token</button>
+                    </div>
+
+
 
                 </div>
             </div>
@@ -37,12 +44,49 @@
             <div class="category-content" id="Manage-Subscriptions">
                 <div class="container my-5">
                     <h2>Manage Subscriptions</h2>
+                    <ol>
+                        <li>Doctors <button type="button" id="doctors_sub">Subscribe</button><button type="button"
+                                id="doctors_un">Unsubscibe</button></li>
+                        <li>Drugs <button type="button" id="drugs_sub">Subscribe</button><button type="button"
+                                id="drugs_un">Unsubscibe</button></li>
+                        <li>Patients <button type="button" id="patients_sub">Subscribe</button><button type="button"
+                                id="patients_un">Unsubscibe</button></li>
+                        <li>Pharmacies <button type="button" id="pharmacies_sub">Subscribe</button><button type="button"
+                                id="pharmacies_un">Unsubscibe</button></li>
+                        <li>Companies <button type="button" id="company_sub">Subscribe</button><button type="button"
+                                id="company_un">Unsubscibe</button></li>
+                    </ol>
+
                 </div>
             </div>
 
             <div class="category-content" id="View-Products">
                 <div class="container my-5">
                     <h2>View Products</h2>
+
+                    <div class="products">
+                        <h3>These are the products you are subscribed to</h3>
+                        <ol>
+                            <li>
+                                <input type="checkbox" name="doctors" id="doctors" readonly>
+                                <label for="doctors"><span>Doctors</span></label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="patients" id="patients" readonly>
+                                <label for="patients"><span>Patients</span></label>
+                            </li>
+                            <li> <input type="checkbox" name="drugs" id="drugs" readonly>
+                                <label for="drugs"><span>Drugs</span></label>
+                            </li>
+                            <li> <input type="checkbox" name="pharmacies" id="pharmacies" readonly>
+                                <label for="drugs"><span>Drugs</span></label>
+                            </li>
+                            <li><input type="checkbox" name="company" id="company" readonly>
+                                <label for="company"><span>Companies</span></label>
+                            </li>
+                        </ol>
+
+                    </div>
                 </div>
             </div>
         </div>

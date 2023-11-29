@@ -73,6 +73,8 @@ input:focus{
 form{
     display: flex;
     justify-content: center;
+    max-width: 400px;
+            margin: 50px auto;
 }
 legend{
     width: 500px;
@@ -135,4 +137,211 @@ a{
 .category-content.show {
     display: inline-block;
     /* flex-direction: row; */
+}
+table{
+    border-collapse: colapse;
+    width: 100%;
+    margin-top: 20px;
+}
+table tr{
+    color: #4ebfefa0;
+    font-size: 12px;
+}
+table th{
+    background-color: #0195863a;
+    color: white;
+    font-weight: bold;
+}
+th,td{
+    padding:12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd2d;
+}
+thead {
+    background-color:rgb(0, 208, 255);
+    color: rgba(0, 255, 255, 0.491);
+    text-decoration-color: grey;
+}
+tr:hover {
+    background-color: #f5f5f531;
+}
+tr:nth-child(even){
+background-color: #f9f9f914;
+
+}
+button{
+    margin: 0 10px;
+    padding:15px 20px;
+    background-color:#019587;
+    border:none;
+    border-radius: 5px;
+    transition: .5s ease;
+    color:white;
+    font-size:1em;
+    text-decoration-color: rgb(74, 74, 198)(0, 0, 255, 0.854);
+    cursor:pointer;
+
+}
+button:hover{
+    background: #25dcc9;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+input, ol {
+    
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+ol{
+    width:60%;
+}
+
+form button[type="submit"] {
+    background-color: #019587;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+form button[type="submit"]:hover {
+    background-color: #25dcc9;
+    border: 2px solid white;
+            border-radius: 10px;
+}
+.sidebar{
+    background-color: #019587;
+    border-radius: 10px;
+    padding: 20px; 
+}
+.category-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.category-item {
+    cursor: pointer;
+    padding: 12px;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.category-item:hover {
+    background-color: #025963; 
+}
+.category-item.active {
+    background-color: #025963; 
+}
+.main_content{
+    margin-left:70px;
+    padding: 20px;
+    background:transparent;
+}
+.main_content h2 {
+    color: antiquewhite;
+}
+.main_content p {
+    color: #aaa;
+}
+input[type="text"]{
+    width: 70%; 
+    padding: 10px;
+     margin-bottom: 15px;
+      box-sizing: border-box; 
+      border: 1px solid #ccc; 
+    border-radius: 5px;
+    height: 50px;
+
+}
+input[type="checkbox"]{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width:20px;
+    height: 20px;
+    margin-right: 5px;
+    border:2px solid #019587;
+    border-radius: 4px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+input[type="checkbox"]:checked {
+    background-color: #019587;
+    border: 2px solid #019587;
+}
+label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 8px;
+    color: white;
+    display: block;
+            margin-bottom: 10px;
+}
+label span {
+    margin-left: 8px;
+}
+.products ol{
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
+.products li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.products label {
+    color: white;
+}
+.products label span {
+    margin-left: 8px;
+}
+label {
+    display: block; 
+    margin-bottom: 5px; 
+}
+input {
+    width: 70%; 
+    margin-bottom: 7px; 
+}
+ol{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+@media only screen and (max-width: 600px) {
+    form {
+        max-width: 100%;
+    }
+
+    input[type="checkbox"] {
+        width: 10px;
+        height: 10px;
+    }
+}
+.token-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 400px; 
+    margin: 50px auto;
+}
+
+.token {
+    display: none; /* Hide the token initially */
+}
+
+.token.active {
+    display: block; /* Show the token when active class is applied */
+}
+
+.token textarea {
+    width: 80%;
 }

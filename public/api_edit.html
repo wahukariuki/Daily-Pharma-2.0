@@ -4,26 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <!--<style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: rgba(0, 0, 0, 0.895);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #019587;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #25dcc9;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+    </style>-->
+    <header>
+        <div class="logo">
+            <a href="index.html">DailyPharma API</a>
+            <hr>
+        </div>
+    </header>
     <form action="/updateUser" method="post">
-        <label for="id_ssn"> ID/SSN</label>
-        <input type="text" name="id_ssn" id="id_ssn" readonly>
-        <label for="User_type"> User_type</label>
-        <input type="text" name="User_type" id="User_type" readonly>
-        <label for="drugs">drugs </label>
-        <input type="text" name="drugs" id="drugs">
-        <label for="doctors"> doctors</label>
-        <input type="text" name="doctors" id="doctors">
-        <label for="patients"> patients</label>
-        <input type="text" name="patients" id="patients">
-        <label for="pharmacies">pharmacies</label>
-        <input type="text" name="pharmacies" id="pharmacies">
-        <label for="company">company</label>
-        <input type="text" name="company" id="company">
-        <button type="submit">Update</button>
+        <legend>
+            <label for="id_ssn"> ID/SSN</label>
+            <input type="text" name="id_ssn" id="id_ssn">
+            <label for="User_type"> User_type</label>
+            <input type="text" name="User_type" id="User_type">
+            <ol>
+                <li>
+                    <input type="checkbox" name="doctors" id="doctors">
+                    <label for="doctors"><span>Doctors</span></label>
+                </li>
+                <li>
+                    <input type="checkbox" name="patients" id="patients">
+                    <label for="patients"><span>Patients</span></label>
+                </li>
+                <li> <input type="checkbox" name="drugs" id="drugs" readonly>
+                    <label for="drugs"><span>Drugs</span></label>
+                </li>
+                <li> <input type="checkbox" name="pharmacies" id="pharmacies">
+                    <label for="drugs"><span>Drugs</span></label>
+                </li>
+                <li><input type="checkbox" name="company" id="company">
+                    <label for="company"><span>Companies</span></label>
+                </li>
+                <button type="submit">Edit</button>
+
+        </legend>
 
     </form>
     <script>
