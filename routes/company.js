@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const mysql2 = require('mysql2')
+const session = require('express-session')
+const jwt = require('jsonwebtoken')
 
 //Creating a connection to our database
 const connection = mysql2.createConnection({
@@ -12,13 +14,43 @@ const connection = mysql2.createConnection({
 
 try {
     connection.connect()
+    
 } catch (e) {
     console.log("Connection to MySQL failed!")
     console.log(e)
 }
 
+// Use express-session middleware
+router.use(session({
+    secret: 'c75ue5wsh8syozant1to5', // Change this to a strong, secure secret key
+    resave: false,
+    saveUninitialized: true,
+}));
+
+//Function to authenticate whether an endpint has the necessay access token
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (token == null) {
+        return res.status(401).json({ message: 'Authorization Failed. Token Not Available' });
+    }
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, userData) => {
+        if (err) return res.status(403).json({ message: 'Token verification failed' });
+        req.session.user = userData; // Store user data in session for later use
+        next();
+    });
+}
+
 //Get list of all companies
-router.get('/', (req,res)=>{
+router.get('/', authenticateToken,(req,res)=>{
+    const user = req.session.user
+  
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized. Please login to access the data.' })
+    }
+
     connection.query(
         "SELECT `Company_ID`, `Company_Name`, `Company_Email`, `Company_Phone`, `Status` FROM `company`",
         [],
@@ -30,8 +62,13 @@ router.get('/', (req,res)=>{
 })
 
 //Get company by id
-router.get('/id/:id', (req,res)=>{
+router.get('/id/:id', authenticateToken, (req,res)=>{
     console.log(req.params.id)
+    const user = req.session.user
+  
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized. Please login to access the data.' })
+    }
 
     connection.query(
         "SELECT `Company_ID`, `Company_Name`, `Company_Email`, `Company_Phone`, `Status` FROM `company` WHERE `Company_ID`= ? ",
@@ -45,8 +82,13 @@ router.get('/id/:id', (req,res)=>{
 
 
 //Get company by email
-router.get('/email/:email', (req,res)=>{
+router.get('/email/:email', authenticateToken, (req,res)=>{
     console.log(req.params.email)
+    const user = req.session.user
+  
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized. Please login to access the data.' })
+    }
 
     connection.query(
         "SELECT `Company_ID`, `Company_Name`, `Company_Email`, `Company_Phone`, `Status` FROM `company` WHERE `Company_Email` =  ? ",
@@ -59,8 +101,13 @@ router.get('/email/:email', (req,res)=>{
 })
 
 //Get company by drug produced
-router.get('/drugs-produced/:id', (req,res)=>{
+router.get('/drugs-produced/:id', authenticateToken, (req,res)=>{
     console.log(req.params.id)
+    const user = req.session.user
+  
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized. Please login to access the data.' })
+    }
 
     connection.query(
         "SELECT * FROM drugs d WHERE d.Drug_Company = ? ",
