@@ -63,10 +63,12 @@ router.get('/login', async (req, res) => {
                             console.error('Error confirming api_access:', confirmApiError);
                             res.status(500).json({ error: 'Internal server error' });
                         } else {
+                            let match = false;
                             if (confirmResults.length > 0) {
                                 const match = await bcrypt.compare(password, confirmResults[0].Password);
                                 if (match) {
                                     res.status(200).json({ message: 'User login successful' });
+                                    window.location.href="user.html";
                                 } else {
                                     res.status(401).json({ error: 'Invalid credentials' });
                                 }

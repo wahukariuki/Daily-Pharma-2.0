@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>API ACCESS</title>
 </head>
 
@@ -39,7 +39,7 @@
 
                 <!-- Create js logic to pick form data for this form -->
                 <p>Already have an account? <a href="index.html">Login here</a></p>
-                <button id="login" onclick="registerUser()">Register</button>
+                <button id="login" onclick="registerUser()" type="submit">Register</button>
             </legend>
 
         </form>
@@ -48,8 +48,8 @@
                 const id_ssn = document.getElementById('id_ssn').value;
                 const User_type = document.getElementById('user_type').value;
                 const Password = document.getElementById('password').value;
-
-                fetch('http://localhost:3000/api/register', {
+                console.log('Sending registration request:', { id_ssn, User_type, Password });
+                fetch('/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
