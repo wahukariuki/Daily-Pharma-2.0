@@ -1,0 +1,16 @@
+###
+//Tesing Pharmacy routes
+GET http://localhost:3000/pharmacy
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+
+###
+GET http://localhost:3000/pharmacy/id/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+
+###
+GET http://localhost:3000/pharmacy/email/abcpharmacy@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+
+###
+GET http://localhost:3000/pharmacy/address/Manhattan
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc

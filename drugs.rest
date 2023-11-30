@@ -1,0 +1,9 @@
+###
+//Test Routes for drugs
+GET http://localhost:3000/drugs
+
+###
+GET http://localhost:3000/drugs/id/35
+
+###
+GET http://localhost:3000/drugs/category/Antibiotic
