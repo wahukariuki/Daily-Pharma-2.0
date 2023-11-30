@@ -1,29 +1,34 @@
 ###
 //Testing patient routes
 GET http://localhost:3000/patients
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjU5NzMsImV4cCI6MTcwMTMyNjAzM30.Jf5MtADVEU21YKfK5lHdTuOgTE9Z0TdfmNsm36yViCU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYwNDcsImV4cCI6MTcwMTM2NjEwN30.F8uQos9iI_Un2k1VDot_rGKr9CAzc7dmu8wZJpFQZnU
+
+###
+GET http://localhost:3000/patients/ssn/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYyNjcsImV4cCI6MTcwMTM2Njg2N30.pQdVjDbIqkbpIZ-guJecupAn_C72TwvhYOWuitmVRVM
+
 ###
 GET http://localhost:3000/patients/email/michaeldavis@gmail.com
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjU5NzMsImV4cCI6MTcwMTMyNjAzM30.Jf5MtADVEU21YKfK5lHdTuOgTE9Z0TdfmNsm36yViCU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYyNjcsImV4cCI6MTcwMTM2Njg2N30.pQdVjDbIqkbpIZ-guJecupAn_C72TwvhYOWuitmVRVM
 
 ###
 GET http://localhost:3000/patients/gender/Female
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjU5NzMsImV4cCI6MTcwMTMyNjAzM30.Jf5MtADVEU21YKfK5lHdTuOgTE9Z0TdfmNsm36yViCU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYyNjcsImV4cCI6MTcwMTM2Njg2N30.pQdVjDbIqkbpIZ-guJecupAn_C72TwvhYOWuitmVRVM
 
 ###
 GET http://localhost:3000/patients/drug/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjU5NzMsImV4cCI6MTcwMTMyNjAzM30.Jf5MtADVEU21YKfK5lHdTuOgTE9Z0TdfmNsm36yViCU 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYzODEsImV4cCI6MTcwMTM2Njk4MX0.NvCoTl0jxfPDjb2mfSm6kt32t_03lzMQApJJihjLUTI
 
 ###
 GET http://localhost:3000/patients/drug/Acetaminophen
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjU5NzMsImV4cCI6MTcwMTMyNjAzM30.Jf5MtADVEU21YKfK5lHdTuOgTE9Z0TdfmNsm36yViCU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYzODEsImV4cCI6MTcwMTM2Njk4MX0.NvCoTl0jxfPDjb2mfSm6kt32t_03lzMQApJJihjLUTI
 
 ###
 POST http://localhost:4000/subscribe
 Content-Type: application/json
 
 {
-    "SSN" : 100,
+    "SSN" : 999,
     "userType" : "patient",
-    "resource": "pharmacy"
+    "resource": "patient"
 }

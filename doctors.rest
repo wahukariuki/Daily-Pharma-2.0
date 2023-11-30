@@ -1,16 +1,16 @@
 ###
 //Tesing Doctor routes
 GET http://localhost:3000/doctors
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+Authorization: Bearer 
 
 ###
 GET http://localhost:3000/doctors/ssn/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+Authorization: Bearer 
 
 ###
 GET http://localhost:3000/doctors/speciality/Cardiology
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+Authorization: Bearer 
 
 ###
 GET http://localhost:3000/doctors/experience/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+Authorization: Bearer 

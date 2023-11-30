@@ -73,11 +73,11 @@ input:focus{
 form{
     display: flex;
     justify-content: center;
-    max-width: 400px;
-            margin: 50px auto;
+    width: 500px;
+    margin: 50px auto;
 }
 legend{
-    width: 500px;
+    width: 550px;
     border: 2px dashed white;
     border-radius: 20px;
     display: flex;

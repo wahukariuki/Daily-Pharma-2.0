@@ -1,16 +1,16 @@
 //Testing Routes for the company
 ###
 GET http://localhost:3000/company
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYzODEsImV4cCI6MTcwMTM2Njk4MX0.NvCoTl0jxfPDjb2mfSm6kt32t_03lzMQApJJihjLUTI
 
 ###
 GET http://localhost:3000/company/id/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYxNTcsImV4cCI6MTcwMTMyNjIxN30.ek4FSdzsAa_H2rkCK3Vk2aQuSClr-p7LyWp3QbzsrLc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYzODEsImV4cCI6MTcwMTM2Njk4MX0.NvCoTl0jxfPDjb2mfSm6kt32t_03lzMQApJJihjLUTI
 
 ###
 GET http://localhost:3000/company/email/pqrpharma@gmail.com
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYyMjEsImV4cCI6MTcwMTMyNjI4MX0.aZrchtkbIjKSgZWFFjCwJGeMYwv9y_dHR5LPDvOlpb4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzNjYzODEsImV4cCI6MTcwMTM2Njk4MX0.NvCoTl0jxfPDjb2mfSm6kt32t_03lzMQApJJihjLUTI
 
 ###
 GET http://localhost:3000/company/drugs-produced/0
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDEzMjYyMjEsImV4cCI6MTcwMTMyNjI4MX0.aZrchtkbIjKSgZWFFjCwJGeMYwv9y_dHR5LPDvOlpb4
+Authorization: Bearer 

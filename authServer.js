@@ -116,7 +116,7 @@ app.post('/login', (req, res) => {
         });
       } else {
         console.log('Password Mismatch');
-        return res.status(401).json({ message: 'InvalSSN credentials' });
+        return res.status(401).json({ message: 'Invalid credentials' });
       }
     });
 })
@@ -158,7 +158,7 @@ function authenticateToken(req, res, next) {
 //Function to generate tokens
 function generateAccessToken(user) {
     const payload = { SSN: user.SSN }; // Extract the SSN from the user object
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn : '1m'});
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn : '10m'});
 }
   
 

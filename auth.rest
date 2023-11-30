@@ -1,15 +1,11 @@
 ###
-GET http://localhost:3000/users
-Authorization: Bearer 
-
-###
 POST http://localhost:4000/register
 Content-Type: application/json
 
 {
-    "SSN" : 100,
-    "userType" : "company",
-    "password": "company"
+    "SSN" : 999,
+    "userType" : "patient",
+    "password": "patient"
 }
 
 ###
@@ -18,8 +14,8 @@ Content-Type: application/json
 
 {
     "SSN" : 100,
-    "userType" : "doctor",
-    "password": "doctor"
+    "userType" : "admin",
+    "password": "admin"
 }
 
 ###
@@ -30,7 +26,7 @@ POST http://localhost:4000/refresh
 Content-Type: application/json
 
 {
-    "token" : "eyJhbGciOiJIUzI1NiJ9.MTAw.Vlp-9MwIr8fylhV9C46cGXz4HZ4f7rhzkOeLimSKRTg"
+    "token" : "eyJhbGciOiJIUzI1NiJ9.OTk5.Chy2l5GJBIOqaikHIrl5mxDMivVH_rUf27QH9H2KDpk"
 }
 
 ###
@@ -38,7 +34,7 @@ POST http://localhost:4000/admin/grant-access
 Content-Type: application/json
 
 {
-    "SSN" : 100,
+    "SSN" : 999,
     "userType" : "patient",
-    "resource" : "pharmacy"
+    "resource" : "patient"
 }

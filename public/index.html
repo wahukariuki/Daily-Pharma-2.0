@@ -18,11 +18,13 @@
     </header>
 
     <div>
+        <center><h2>API USER LOGIN</h2></center>
 
-        <form method="post">
+        <form method="post" id="loginForm">
+            
             <legend>
-                <label for="id">ID/SSN</label>
-                <input type="text" name="SSN" id="SSN">
+                <label for="id">SSN</label>
+                <input type="text" name="SSN" id="SSN" required>
 
                 <label for="userType">User Type:</label>
                 <select id="userType" name="userType" required>
@@ -35,38 +37,44 @@
                 </select>
 
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
 
                 <!-- Create js logic to pick form data for this form -->
 
                 <p>Dont have an account? <a href="register.html">Register here</a></p>
-                <button id="login">Login</button>
+                <button type="submit" id="login">Login</button>
             </legend>
 
         </form>
         <script>
             function loginUser() {
-                const id_ssn = document.getElementById('id_ssn').value;
-                const User_type = document.getElementById('user_type').value;
-                const Password = document.getElementById('password').value;
-                console.log('Sending registration request:', { id_ssn, User_type, Password });
+                const form = document.getElementById('loginForm')
+
+                form.addEventListener('submit', (event)=>{
+                event.preventDefault()
+
+                const data = new FormData(event.target)
+                const obj = {}
+                data.forEach((value,key)=>{
+                    obj[key] = value
+                })
+                console.log(obj)
+
                 fetch('/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-
                     },
-                    body: JSON.stringify({ id_ssn, User_type, Password }),
+                    body: JSON.stringify(obj),
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data);
-                        window.location.href = "user.html";
-                    }).catch(error => {
-                        console.error('Error:', error);
-
-                    })
-            }
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    window.location.href = "user.html";
+                }).catch(error => {
+                    console.error('Error:', error);
+                })
+            })}
         </script>
 
     </div>
